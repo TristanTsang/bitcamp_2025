@@ -27,10 +27,10 @@
 
   .signup {
     line-height: 1;
-    padding: 8px 20px;
+    padding: 8px 2rem;
     border-radius: var(--mantine-radius-md);
     text-decoration: none;
-    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+    color: #FFFFFF;
     font-size: var(--mantine-font-size-md);
     font-weight: 500;
   
@@ -49,10 +49,10 @@
     padding: 8px 1rem;
     border-radius: var(--mantine-radius-md);
     text-decoration: none;
-    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+    color: #FFFFFF;
     font-size: var(--mantine-font-size-md);
     font-weight: 500;
-    background-color: #3333ff;
+    background-color: #7668fc;
     border-radius: 2px;
   
     @mixin hover {
