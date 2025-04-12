@@ -21,14 +21,16 @@ import {
         </Title>
         <Text c="dimmed" size="md" ta="center" mt={5}>
           Have an account?{' '}
-          <Anchor size="sm" component={Link} to="/login">
+          <Anchor size="md" component={Link} to="/login">
             Login
           </Anchor>
         </Text>
   
         <Paper size="lg" withBorder shadow="md" p={30} mt={30} radius="md">
-          <TextInput size="lg" label="Email" placeholder="applicant@gmail.com" required />
-          <PasswordInput size="lg" label="Password" placeholder="Your password" required mt="md" />
+          <TextInput size="lg" label="Email" placeholder="applicant@gmail.com" required 
+          classNames = {{label: classes.label}}/>
+          <PasswordInput size="lg" label="Password" placeholder="Your password" required mt="md" 
+          classNames = {{label: classes.label}}/>
           <Button size="lg" fullWidth mt="xl">
             Signup
           </Button>
