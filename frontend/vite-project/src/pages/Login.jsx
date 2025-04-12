@@ -11,6 +11,7 @@ import {
     Title,
   } from '@mantine/core';
   import classes from './Login.module.css';
+  import { Link } from 'react-router-dom';
   
   function Login() {
     return (
@@ -20,20 +21,16 @@ import {
         </Title>
         <Text c="dimmed" size="md" ta="center" mt={5}>
           Do not have an account yet?{' '}
-          <Anchor size="md" component="button">
+          <Anchor size="md" component={Link} to="/signup">
             Create account
           </Anchor>
         </Text>
   
         <Paper size="lg" withBorder shadow="md" p={30} mt={30} radius="md">
-          <TextInput size="lg" label="Email" placeholder="you@mantine.dev" required />
-          <PasswordInput size="lg" label="Password" placeholder="Your password" required mt="md" />
-          <Group justify="space-between" mt="lg">
-            <Checkbox label="Remember me" />
-            <Anchor component="button" size="md">
-              Forgot password?
-            </Anchor>
-          </Group>
+          <TextInput size="lg" label="Email" placeholder="applicant@gmail.com" required 
+          classNames = {{label: classes.label}}/>
+          <PasswordInput size="lg" label="Password" placeholder="Your password" required mt="md" 
+          classNames = {{label: classes.label}}/>
           <Button size="lg" fullWidth mt="xl">
             Sign in
           </Button>

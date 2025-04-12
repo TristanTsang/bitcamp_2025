@@ -22,3 +22,7 @@
       Greycliff CF,
       var(--mantine-font-family);
   }
+
+  .label {
+    padding-bottom: 1rem;
+  }

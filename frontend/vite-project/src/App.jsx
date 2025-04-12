@@ -7,23 +7,26 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import UploadResume from './pages/UploadResume';
+import Results from './pages/Results';
+import Leaderboard from './pages/Leaderboard';
+
 
 function App() {
-
-  const theme = createTheme({
-    colorScheme: 'dark', // 👈 This is what applies dark mode now
-  });
 
   return (
     <MantineProvider withGlobalStyles
     withNormalizeCSS
-    theme={theme}>
+    defaultColorScheme="dark">
       <Router>
       <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/upload" element={<UploadResume />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </Router>
     </MantineProvider>

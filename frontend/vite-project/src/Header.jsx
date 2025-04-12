@@ -16,7 +16,8 @@ export function Header() {
         to="/"
         variant="gradient"
         gradient={{ from: 'rgba(114, 71, 255, 1)', to: 'rgba(36, 171, 255, 1)', deg: 90 }}
-        size= 'xl'
+        size= 'md'
+        style={{ fontSize: 20, fontWeight: 'bold' }}
         className = {classes.title}
       >Resume Reviewer</Button>
         <Group gap={5} visibleFrom="xs" className={classes.debugGroup}>
@@ -32,6 +33,7 @@ export function Header() {
                 to="/login"
                 size="md"
                 className={classes.login}
+                style = {{ backgroundColor: "#7668fc", }}
             >Login</Button>
         </Group>
 
