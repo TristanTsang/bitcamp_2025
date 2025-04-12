@@ -1,64 +1,42 @@
 import { useState } from 'react';
-import { Container, FileInput, Title, Button, Text, Paper } from '@mantine/core';
+import { Container, FileInput, Title, Button, Text, Paper, Grid } from '@mantine/core';
 import classes from "./UploadResume.module.css";
+import Analytics from './Analytics';
+import { useNavigate } from 'react-router-dom';
 
 function UploadResume() {
-  const [file, setFile] = useState(null);
-  const [uploaded, setUploaded] = useState(false);
-  const [fileInfo, setFileInfo] = useState(null);
-
-  const handleUpload = () => {
-    if (!file) return;
-
-    // Simulate file processing
-    const reader = new FileReader();
-    reader.onload = () => {
-      setFileInfo({
-        name: file.name,
-        size: (file.size / 1024).toFixed(2) + ' KB',
-        type: file.type,
-      });
-      setUploaded(true);
+    const [file, setFile] = useState(null);
+    const navigate = useNavigate();
+  
+    const handleUpload = () => {
+      if (!file) return;
+  
+      // Optional: process file first
+      navigate('/results', { state: { file } }); // ✅ pass file via location state
     };
-
-    reader.readAsArrayBuffer(file); // simulate processing
-  };
-
-  return (
-    <Container size="sm" my={40}>
-      {!uploaded ? (
+  
+    return (
+      <Container fluid px="xl" py="xl" my={40} style={{ paddingTop: 89, }}>
         <Paper withBorder shadow="md" p="xl">
           <Title order={2} mb="md" align="center">
             Upload Your Resume
           </Title>
-          <FileInput size="lg"
+          <FileInput
+            size="lg"
             label="Resume file"
-            placeholder="Click to select your resume"
+            placeholder="Click to select your resume (pdf)"
             value={file}
             onChange={setFile}
-            accept=".pdf,.doc,.docx"
+            accept=".pdf"
             required
-            classNames = {{label: classes.label}}
+            classNames={{ label: classes.label }}
           />
           <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
             Submit
           </Button>
         </Paper>
-      ) : (
-        <Paper withBorder shadow="md" p="xl">
-          <Title order={2} mb="md" align="center">
-            Resume Uploaded 🎉
-          </Title>
-          <Text><strong>Name:</strong> {fileInfo.name}</Text>
-          <Text><strong>Size:</strong> {fileInfo.size}</Text>
-          <Text><strong>Type:</strong> {fileInfo.type}</Text>
-          <Text mt="lg" c="dimmed">
-            You can now proceed to analyze or score your resume.
-          </Text>
-        </Paper>
-      )}
-    </Container>
-  );
-}
+      </Container>
+    );
+  }
 
 export default UploadResume;

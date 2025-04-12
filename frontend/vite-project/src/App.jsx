@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import UploadResume from './pages/UploadResume';
+import Results from './pages/Results';
+import Leaderboard from './pages/Leaderboard';
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/upload" element={<UploadResume />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </Router>
     </MantineProvider>
