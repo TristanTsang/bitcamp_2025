@@ -34,6 +34,7 @@ app.post('/api/review-resume', upload.single('resume'), async (req, res) => {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
     const prompt = `Here is a sample of top candidate resumes:
 
+
 Resume 1: EDUCATION
 University of Texas at Austin - B.S. Computer Science
 Coursework: Algorithms, Software Design, Computer Architecture, Principles of Machine Learning, Data Structures Activities: TX Convergent, Association of Computing Machinery, Texas Epic
@@ -71,6 +72,9 @@ AWARDS
 - USA Computing Olympiad Silver Division
 04/2020
 12/2019
+
+
+
 
 Resume 2: EDUCATION
 University of Rochester
@@ -120,6 +124,8 @@ Personal Smart Note | PHP, TypeScript, SCSS, Blade, JavaScript, HTML
 October 2022
 - An app that enables users to create, categorize, share and comment note with other users.
 - Won 3rd prize in All In Hackathon 2022 hosted by MLHacking for its usability and scalability.
+
+
 Resume 3: Northeastern University
 Bachelor of Science in Computer Science (Concentration in Artificial Intelligence)
 Boston, MA
@@ -156,6 +162,8 @@ CORE TECHNICAL SKILLS
 - Languages: Java, Python, Typescript, Javascript, HTML/CSS, SQL
 - Frameworks/Libraries: React, Express, Flask, JUnit, Spring Boot, PyTorch, Pandas, Numpy
 - Tools: MySQL, PostgreSQL, Git, Docker, Node, Postman, Linux
+
+
 Resume 4: WORK EXPERIENCE
 Indianapolis, IN
 QA Business Analyst Intern
@@ -202,6 +210,8 @@ PROJECTS
 -  Today I Learned | FULL-STACK, REACT, SUPABASE: "TIL" is a web app for users to share and upvote/downvote or dispute interesting facts. It features category-based filtering for efficient fact browsing.
 -  iBudget | REACT, JS, SUPABASE: A full-stack budget management application with user authentication, account creation, budget tracking, and secure data management (2nd Place at Headstarter Al Hackathon I)
 -  COVID-19 stats | R, SHINY: covid stats (visual) for every country using RShiny with an option of date range. You can hover over countries, zoom in/ zoom out etc.
+
+
 Resume 5: Education
 University of Maryland
 Expected Graduation: May 2025
@@ -245,7 +255,9 @@ December 2023
 Class Project
 February 2023
 - Engineered a Ruby-based translator, leveraging file I/O and regular expressions to parse grammatical structures, translating complex sentences across multiple languages with 100% accuracy
-- Implemented a flexible grammar structure to define valid sentence structures for each supported language, allowing sentence generation based on user-defined rules
+- Implemented a flexible grammar structure to define valid sentence structures for each supported language, allowing sentence generation based on user-defined rules.
+
+
 Resume 6: EDUCATION
 Harvard University
 Bachelor of Arts in Computer Science
@@ -291,12 +303,235 @@ Languages: Python, C++, JavaScript, HTML/CSS, SQL (Postgres,) Java, HTML/CSS, R 
 Developer Tools: Git, Docker, Kubernetes, CI/CD (Jenkins), PostgreSQL, MySQL Libraries: GPT-2/3, TensorFlow, Keras
 
 
-Compare the user's resume with the top resumes and give feedback. Focus on:
+Resume 7: EDUCATION
+University of Florida
+Bachelor of Science in Computer Science Minor Business Administration GPA: 4.00/4.00
+Dec 2025
+Gainesville, FL
+• Selected Coursework: Python for Biology, Al in Science, Intro to VR, Enterprise Software Engineering
+• Clubs: Open Source Club, ColorStack, SHPE, G-Al-tor Club
+EXPERIENCE
+Software Engineer Intern
+Feb 2024 - Oct 2024
+Hillsborough County Sheriff's Office, the 5th largest sheriff's office in the U.S.
+Tampa, Fl
+• Deployed to production a fullstack CRUD app (with end-to-end ownership) serving over 2,000 law enforcement agents
+• Implemented C# Backend featuring Swagger, user authentication, and permissions based on Active Directory groups
+• Developed 4 stored procedures for Microsoft SQL Server database supporting filtering and CRUD operations
+• Built a Vue Frontend using Typescript, Quasar and Vitest, including custom Ul components with proper unit tests • Developed and pushed to production 5 web components in a team environment for public-facing site including an event calendar, event timeline, and carousel using Typescript, Astro and Tailwind CSS achieving a 100/100 lighthouse score,
+following ADA guidelines and modern SEO practices
+• Migrated large scale Vue2+.NET6 application with over 10,000 of lines of code to Vue3+.NET8
+Computer Science & Mathematics Tutor
+Sep 2022 - Jan 2024
+Infinite Edge Learning Center & CodeFu
+Hybrid Tampa, FL • Created and implemented 10-15 personalized lesson plans involving advanced math, Java, and Python each week to
+facilitate mastery of SAT/ACT math and AP Computer Science, leading to 85% of students earning AP scores of 3 and above
+Data Analyst Intern
+July 2021 - Dec 2021
+The Church Of Jesus Christ Of Latter Day Saints
+Taichung, Taiwan • Allocated $24,000 yearly advertising budget, created reports, and queried data from Facebook Pages REST API using
+Python and employee database using SQL leading to an average 20% decrease cost-per-click on ad campaigns
+PROJECTS
+Open Source Contributor Python, C#, Gnome Linux, Ubuntu Linux, Git
+June 2020 - Present
+• Added 400+ lines of documentation to open source NameParserSharp, used at the Hillsborough County Sheriff's Office
+• Contributed to 3 Ubuntu Budgie applications using Python helping the repository gain over 157 GitHub stars
+• 6 pull requests accepted into Gnome Developer Documentation adding proper JavaScript documentation
+• Developed GTK application displaying live cryptocurrency ticker prices on the desktop and top bar from the Binance API
+UFStudyBuddies | Typescript, React.js, Git, Astro, Firebase Demo GitHub
+Mar 2024 - Mar 2024
+• Led team of 4 to the finals in the University of Florida OSC Hackathon with a CRUD study-group-finding web application.
+• Handled automated CI/CD to Vercel and merge conflicts over in 30 files involving 108 commits in under 24 hours • Developed the Frontend with Server Side Rendering using Typescript, React, Astro, Firebase Authentication in collaboration with the Designer and Backend Engineer
+Machine Learning Library | C#, Algorithms, Deep Learning
+May 2023 - Dec 2023 • Developed a matrix library for addition/subtraction, dot product, and scalar multiplication/division, and extended the C#
+Random class to produce a random standard distribution
+• Demonstrated library capabilities with feed-forward network utilizing back propagation to accurately predict outcomes
+SKILLS
+Languages: Typescript, C#, C++, Python, SQL, HTML, CSS
+Frameworks/Libraries: Vue, NET, React, Astro, Nextjs, Node.js, Bootstrap, TailwindCSS
+Tools/Technologies: Git, Vim, Linux, Postman, REST-API, Agile, VS Code, Visual Studio, SQL Server Management Studio
+AWARDS AND CERTIfiCATIONS Morgan Stanley, University of Florida, Florida International University: 2x Hackathon Winner, 1x Hackathon Finalist
+Google: Grow With Google Scholar
+YearUp & Pluralsight Software Development Bootcamp Graduate
+Boy Scouts of America: Eagle Scout
+
+
+Resume 8: SUMMARY Highly motivated graduate specialized in IT with internship exposure in Machine Learning, Software Engineering, and Delivery Management. Strong project background in software and hardware applications. Eagerly seeking opportunities in Data Science,
+Data Analytics, and other software roles to leverage my strong technical, analytical, and inter-personal skills.
+EDUCATION
+Master's, Information Technology (Project Management)
+Arizona State University, Tempe, Arizona, USA
+Aug 2022 - May 2024
+4.00 GPA
+B.Tech, Computer Science & Engineering
+Gitam University, Visakhapatnam, Andhra Pradesh, India
+Jul 2018 - Jun 2022
+3.52 GPA
+TECHNICAL SKILLS Programming and Web Technologies: C, C++, Java, Python, SQL, HTML5, CSS3, JavaScript, NodeJS, React
+Libraries: Numpy, Pandas, Matplotlib Tools, Frameworks and Databases: Tableau, VS Code, Git, Bitbucket, MySQL, DBMS, Eclipse, Postman, Jira, Miro, Full Story
+Skills: Agile Methodologies, OOPS Concepts, Data Structures and Algorithms, Amazon Web Services.
+PROFESSIONAL EXPERIENCE
+University Of Phoenix, Phoenix, AZ: Application Engineer & Delivery Manager Intern
+May 2023 - Aug 2023 • Achieved significant improvements on the college portal's Application Side by actively participating in sprint
+planning and effectively presenting advancements during Sprint Reviews. • Successfully implemented a formalized RFC process, resulting in comprehensive documentation, efficient
+request management, and enhanced information sharing within the team.
+Indian Council of Agricultural Research, New Delhi, India: Machine Learning Intern
+Jul 2021 - Sep 2021 • Successfully created and deployed machine learning models into the product stack, significantly enhancing product
+development.
+• Effectively assessed and analyzed code during testing stages, identifying and resolving potential glitches and bugs.
+ACADEMIC PROJECTS
+Analysis of Al/ML Salaries
+Aug 2022 - Dec 2022
+Collaborated in a team of four as part of class project in Data Visualization: This project was carried out under the supervision of Prof. Asmaa Elbadrawy. The project's goal was to generate dashboards for potential job seekers and research analysts for checking out the information with regards to salaries
+being offered based on experience and other attributes. • Finishing this project enhanced my understanding of data's impact on business decisions, the value of pattern
+identification, and the effectiveness of data visualization, reinforcing the efficiency of data-driven decision-making.
+Disease Prediction Based on Symptoms
+Aug 2023 - Dec 2023
+Collaborated in a team of four as part of class project in Advanced Big Data: • The project was being mentored by Prof. Robert Rucker. The project's significance lied in early disease detection,
+prompting medical intervention, reducing treatment costs and complexities. • Our method used machine learning, clinical relationships, and healthcare data to inform feasibility, model performance,
+prediction integration, diagnostic effect, and deployment considerations.
+OTHER WORK EXPERIENCE
+Arizona State University, Mesa, AZ: Student Success Aide (20 hours/week)
+Nov 2022 - May 2024 • Assisted academic advisors with scheduling appointments, excelled in fast-paced project environments, addressed
+advising-related requests, and managed daily office duties.
+Arizona State University, Mesa, AZ: Teaching Assistant (10 hours/week)
+Jan 2023 - May 2023
+• Supported 55 undergraduate aviation students per week including exam monitoring, grading, and student support.
+
+
+Resume 9: TECHNICAL SKILLS
+• Languages/Web: Java, Hack/PHP, Python, JavaScript, JSON, XML, Protocol buffers
+• Frameworks/Libraries: Spring Boot, Laravel, React.js, Express.js
+• Protocols: HTTPs, WebSocket, REST, GraphQL, gRPC
+• Databases/ORMs: MySQL, Oracle, Hibernate, MongoDB, mongoose, TAO graph DB
+• Devops/Cloud: Docker, Jenkins, AWS, PCF cloud, CI/CD, Git, Mercurial, Jira, Bitbucket, Splunk, Maven, CloudBees
+• Other: Postman, Junit, Mockito, HackTest, Jest, REST, HHVM, Apigee, SonarQube, New Relic, OWASP, Swagger/OAS
+PROFESSIONAL WORK EXPERIENCE
+Meta, Seattle, WA - Software Engineer (contract)
+Sep 2024 - Present
+• Developed python/bash scripts for LLM evaluations of models using datasets from huggingface and official sources.
+• Leveraged internal Meta libraries to produce high-quality benchmarks for Meta's Generative Al applications.
+• Triggered jobs and did post-processing and triaging to get accurate metrics for various benchmarks/capabilities.
+• Technologies: Python, Bash, SQL, NumPy, Pandas, JSON, CI/CD, Git
+Synchrony Financial, Seattle, WA - Backend API developer
+Feb 2022 - Dec 2023
+• Designed and developed Identity Access Management (IAM), authentication and authorization services utilizing
+Spring Boot, OIDC/OAuth2, and JWT tokens. Leveraged microservices architecture.
+• Designed and developed Login with Synchrony enabling Amazon/PayPal link accounts to Synchrony backend.
+• Architected and developed 10 RESTful APs/proxies for Universal Login project & contributed to design discussions.
+• Implemented passwordless authentication to enable users for certain clients authenticate using email and phone.
+• Integrated AWS services, including S3 for storage and RDS for database management, into existing applications.
+• Decreased response time of some APls by ~20% by leveraging caching and eliminating some redundant DB calls.
+• Technologies: Sprint Boot/Java, JUnit, Mockito, Git, MySQL, Kafka, Jenkins, Postman, Apigee, AWS, PCF, Guice
+Meta, Seattle, WA - Software Engineer (contract).
+Nov 2020 - Sep 2021
+• Coded Discount Automation, generating/passing the discount data to CertMetrics via SSO URI parameters.
+• Built internal Business Merge Tool using FB CRUD-Ul and React. Added features like soft deletion, privacy etc.
+• Developed REST services the module - Courses and Enrollments following design patterns and SOLID principles.
+• Technologies: Hack/PHP, Python, React, Mercurial, TAO, Scuba, Hive, Hphpd, MongoDB, AJAX, JavaScript
+EDUCATION University of Washington - Seattle, WA - Full Stack Web Development, Certification
+Punjab Technical University - GNE College, India - Computer Science, B.S.
+July 2018 - Feb 2019
+July 2011 - July 2015
+• Courses: Data Structures, Algorithms, 0O Programming, Networking, Database Management, Computer Graphics
+ACCOMPLISHMENTS
+• Synchrony — Earned 'Act As Owners' & 'Elevate Every Day' badges for completing work ahead of freeze deadline.
+• Google Summer of Code - Open-source contribution to a project for BRL-CAD org, a web extension in Media Wiki.
+
+
+Resume 10: OBJECTIVE Motivated to secure a full-time technological position. Having hands-on experience in web development, full-stack development, and UI/UX, I have accumulated skills in Java, C++, React, JavaScript, and Figma. My expertise in these technologies strengthens me to make significant contributions to
+innovative projects, driving development with cutting-edge formulas.
+EDUCATION
+UC Irvine, Henry Samueli School of Engineering | Information and Computer Sciences - Irvine, CA
+Bachelor of Science in Computer Science (Specialization in Systems and Software) - August 2022 - December 2024 Relevant Coursework: Software Engineering, Data Structures and Algorithms, Digital Systems, Intermediate Programming, Computer Vision, Data
+Structure Implementation, Introduction to Virtual Reality, Operating Systems, Software System Design, and Implementation Design
+Skills: Java, JavaScript, React, C++, C, R, Git, Python, Node.js, Figma, Vanilla JS, CSS, Html, Bootstrap. Leadership: Kababayan At UCI Publicity Intern, Hack at UCI Gen. Member, Fusion Member, SSVP Concerts Engagement Intern
+College of the Canyons, Community College - Santa Clarita, CA
+Associate Degree of Science in Computer Science (August 2020 - June 2022)
+• Cumulative GPA: 3.71
+Coursera - (Meta Programming Courses) • Programming With JavaScript, Introduction to Back/Front End Web Development
+CS50x - (Technical Harvard Computer Science Course)
+EXPERIENCE
+University Of California - Irvine
+Software Developer
+• Engineered a full-stack JavaScript and Vanilla IS application to retrieve authenticated user data information using Spotify's API.
+• Constructed a Java web application to read user physical responses using camera and video sensing on select devices to generate output.
+• Developed a Search Engine to present relational data based on keywords, filters, and organized-flow of information representation.
+(September 2023 - June 2024) • Developed full-stack web applications to streamline event management, integrating front-end interfaces with back-end APIs using modern frameworks like
+React and Node.js. • Collaborated with cross-functional teams to design and implement user-centric features, leveraging agile methodologies and tools like Git for version
+control. Forage Software Engineering Virtual Experience
+(July 2023 - August 2023)
+• Developed Python-based algorithms for stock price analysis, leveraging data visualization libraries to identify trends and data-driven trading strategies.
+• Implemented real-time data monitoring and analytics tools, enhancing decision-making processes for financial trading. Social Sciences Front Desk Dean's Suite
+(September 2023 - June 2024)
+•Managedconferencerooms,dataentryintodatabase,communicationsupport,andassistancetoleadershipstaff.
+PROJECTS
+Spotify Data Retrieval | Technical Project using Vanilla JS/TS
+• Engineered a full-stack application utilizing the Spotify Web API to dynamically retrieve and display user profile data.
+• Implemented Auth 2.0 authorization code flow to securely authenticate users and gain access to their Spotify accounts.
+• Optimized asynchronous API handling with the Fetch API, resulting in efficient data retrieval and rendering processes.
+• Currently developing the UI/UX and front-end with advanced data visualization features and interactive elements for improved user engagement.
+Iweet Report Search Engine | Technical Project using JavaScript
+• Developed a full-stack application implementing a Search algorithm to dynamically retrieve and display Tweet data based on respective searches.
+• Created a filtered design to display Tweet dates, categories, and an organized fashion for user experience using Html and Bootstrap/CSS.
+PlayTime! | Software Design Studio Project (Winter 2022)
+• Designed high-fidelity UI mockups using Figma, ensuring a child-centric and intuitive user experience.
+• Developed UX frameworks that cater to both children and parents, emphasizing accessibility and usability.
+• Led project management efforts, coordinating with team members to meet project milestones and quality standards.
+Personal Portfolio | Responsive HTML Project utilizing CSS and JS Properties (September 2022)
+• Developed a responsive personal portfolio website using HTML, CSS, and JavaScript, incorporating advanced JS animations to enhance user experience.
+• Showcased professional achievements, projects, and career goals, with a focus on clear and effective presentation.
+
+
+Resume 11: Education Master of Science in IT Project Management, Golden Gate University
+Bachelor of Engineering (Computer Engineering), Savitribai Phule Pune University
+Skills
+Sept 2022 - Dec 2024 San Francisco, CA, USA
+Aug 2016 - May 2020 | Pune, MH, India • Product Management Tools & Skills: Product Lifecycle Management, Product Roadmap, OKR Management, User Experience
+(UX / UI) Design, User Persona, Customer Experience Enhancement, Research & Development, Pricing Analysis • Project Management Tools: Stakeholder Management, Project Planning & Scheduling, Risk Management, Confluence, Scrum,
+Customer Feedback Analysis, Business Strategy, Microsoft Smartsheet, Agile Methodologies • Data Analytics Tools: MySQL, Tableau, Power BI, Microsoft Excel, Product Analytics, Market Research & Analysis, User
+Research, KPI Tracking & Performance Metrics, Automation of Reports, Microsoft Office, Business Intelligence, Dashboard
+• Certification: Google Analytics Certification, Pendo Product Analytics Certification
+Work Experience
+Product Manager, Project Management Institute SFBAC
+Dec 2022 - Present | San Francisco, CA, USA • Implemented user-centric product design principles using Figma, to address pain points, leading to a 40% increase in user
+satisfaction levels as reported through customer surveys • Designed Tableau dashboards for ad-hoc reporting and KPI tracking, providing actionable insights to stakeholders and increasing
+operational efficiency by 25% • Led cross-functional collaboration to streamline client engagement processes, achieving a 38% improvement in strategic
+prioritization of product features • Managed the end-to-end product lifecycle, from concept to launch, ensuring timely delivery and alignment with product vision,
+product concept, and strategic goals, increasing overall product efficiency by 36%
+Product Data Analyst Intern, Datawisp
+Jan 2024 - Apr 2024 | San Francisco, CA, USA • Developed and executed a product launch (go-to-market) GTM strategy for a new product line, using customer segmentation
+analysis and competitor benchmarking to drive a 30% increase in initial sales • Executed a data-driven analysis of user behavior and engagement using Google Analytics to optimize the performance of a new
+product feature, resulting in a 15% increase in customer retention • Collaborated with product managers to design surveys and analyze customer feedback, identifying key improvement areas that
+boosted customer retention by 16% • Optimized feature prioritization and campaign strategies by leading A/B testing initiatives using Google Optimize, resulting in a
+12% increase in user conversion rates and improved ROI for marketing efforts
+Product Analyst, Phonon Communication Pvt Ltd
+Dec 2020 - Jul 2022 | Pune, MH, India • Maintained and developed dashboards for KPI tracking and client feedback analysis using Tableau, delivering actionable insights
+that enhanced product performance metrics for 15+ B2B stakeholders • Utilized SQL and Python to uncover key business and market trends and customer preferences, leading to a 15% improvement in
+product performance and growth strategies • Leveraged customer feedback and identified risks to inform product development, aligning releases with regulatory requirements
+and increasing client success rates by 13% • Utilized Salesforce CRM data to identify key trends in SaaS product adoption for communication solutions, resulting in a 20%
+increase in user engagement within the first quarter of analysis • Conducted API testing during User Acceptance Testing (UAT) utilizing Postman to verify data accuracy, resulting in a 19%
+reduction in integration issues and enhancing system reliability through detailed documentation
+Business Analyst, Grant Revert
+Jan 2020 - Nov 2020 | Pune, MH, India • Analyzed customer journey data to pinpoint pain points, resulting in the implementation of product enhancements that led to a
+20% increase in user satisfaction • Created documentation like functional specifications, project plans, requirement gathering, scope planning, user stories, and
+business requirements documents ensuring clear communication and alignment across teams during product development
+
+
+
+
+Compare the user's resume with the top resumes above and give feedback that is very critical, remember it is very difficult to get a job as a CS student in the status quo, and so being as critical and honest as possible will be the best for the user. Do these: 
+- Key strengths
+- Area to develop further to be more competitive with top candidates (compare with resumes here)
 - How the user's experience and skills compare to those in the top resumes.
-- Key strengths the user should highlight or develop further to be more competitive with top candidates.
-- Specific suggestions on how to enhance the user's resume, such as adding more quantifiable results or emphasizing certain skills.
-- How the user's experience and projects could align with roles at top companies mentioned in the top resumes.
+- Specific suggestions on how to enhance the user's resume to be more like the top resumes
+- I also want you to have 3 subscores (experience, skills, and education); rank these out of 100, given that the top resumes I provided are all at a score of 95/100 or more
+- I also want an overall average score of the 3 subscores.
+- Be generally concise and explain well when needed
+- Every single time that you mention or compare the inputted resume to the 11 top resumes, always refer them as "the top resumes in our database" or something along those lines.
 `;
+
+
 
     const imagePart = {
       inlineData: {
