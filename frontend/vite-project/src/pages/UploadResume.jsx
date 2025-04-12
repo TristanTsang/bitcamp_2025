@@ -31,8 +31,8 @@ function UploadResume() {
             required
             classNames={{ label: classes.label }}
           />
-          <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
-            Submit
+          <Button fullWidth mt="md" onClick={handleUpload} disabled={!file || loading}>
+            {loading ? 'Uploading...' : 'Submit'}
           </Button>
         </Paper>
       </Container>
