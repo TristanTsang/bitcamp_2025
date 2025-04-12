@@ -1,18 +1,25 @@
 import Resume from "../models/resume.model.js";
-
+import cloudinary from "../lib/cloudinary.js";
 export const uploadResume = async (req, res) => {
   try {
     const { resumeFile } = req.body;
     const userId = req.user.uid;
+    console.log(resumeFile);
+    let resumeUrl;
+    if (!resumeFile) {
+      return res.status(404).json({ message: "No File Provided" });
+    }
 
-    //TODO HANDLE RESUME UPLOAD
-    /*let resumeUrl;
-
-    if (image) {
-      const uploadResponse = await cloudinary.uploader.upload(image);
+    if (resumeFile) {
+      const uploadResponse = await cloudinary.uploader.upload(resumeFile);
       resumeUrl = uploadResponse.secure_url;
-    } 
-    */
+      console.log(resumeUrl);
+    }
+
+    if (!resumeUrl) {
+      return res.status(404).json({ message: "File Upload Failed" });
+    }
+
     const newResume = new Resume({
       uid: userId,
       analysis: {
@@ -24,7 +31,7 @@ export const uploadResume = async (req, res) => {
         Experiences: ["Software Engineer"],
       },
       elo: -500,
-      resume: resumeFile,
+      resume: resumeUrl,
     });
 
     await newResume.save();

@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import toast from "react-hot-toast";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -20,6 +21,7 @@ export const useAuthStore = create((set, get) => ({
       set({ authUser: res.data });
     } catch (error) {
       console.log("Error in checkAuth: ", error);
+      toast.error("Failed to authenticate user");
       set({ authUser: null });
     } finally {
       set({ isCheckingAuth: false });
@@ -30,15 +32,19 @@ export const useAuthStore = create((set, get) => ({
     try {
       await signInWithEmailAndPassword(auth, email, password);
       get().checkAuth();
+      toast.success("Successful log in");
     } catch (error) {
       console.log("Error in signup: ", error.message);
+      toast.error("Login failed");
     }
   },
   signup: async (email, password) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       get().checkAuth();
+      toast.success("Successful signup");
     } catch (error) {
+      toast.error("Signup Failed");
       console.log("Error in signup: ", error.message);
     }
   },

@@ -8,26 +8,21 @@ import {
   Paper,
 } from "@mantine/core";
 import classes from "./UploadResume.module.css";
-
+import { useResumeStore } from "../store/useResumeStore";
 function UploadResume() {
   const [file, setFile] = useState(null);
   const [uploaded, setUploaded] = useState(false);
-  const [fileInfo, setFileInfo] = useState(null);
 
-  const handleUpload = () => {
+  const { uploadResume } = useResumeStore();
+
+  const handleUpload = async () => {
     if (!file) return;
-
-    // Simulate file processing
     const reader = new FileReader();
-    reader.onload = () => {
-      setFileInfo({
-        name: file.name,
-        size: (file.size / 1024).toFixed(2) + " KB",
-        type: file.type,
-      });
+    reader.readAsDataURL(file);
+    reader.onloadend = async () => {
+      await uploadResume(reader.result);
       setUploaded(true);
     };
-    reader.readAsArrayBuffer(file); // simulate processing
   };
 
   return (
@@ -56,15 +51,6 @@ function UploadResume() {
           <Title order={2} mb="md" align="center">
             Resume Uploaded 🎉
           </Title>
-          <Text>
-            <strong>Name:</strong> {fileInfo.name}
-          </Text>
-          <Text>
-            <strong>Size:</strong> {fileInfo.size}
-          </Text>
-          <Text>
-            <strong>Type:</strong> {fileInfo.type}
-          </Text>
           <Text mt="lg" c="dimmed">
             You can now proceed to analyze or score your resume.
           </Text>
