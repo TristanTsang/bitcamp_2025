@@ -12,14 +12,10 @@ import UploadResume from './pages/UploadResume';
 
 function App() {
 
-  const theme = createTheme({
-    colorScheme: 'dark', // 👈 This is what applies dark mode now
-  });
-
   return (
     <MantineProvider withGlobalStyles
     withNormalizeCSS
-    theme={theme}>
+    defaultColorScheme="dark">
       <Router>
       <Header/>
         <Routes>
