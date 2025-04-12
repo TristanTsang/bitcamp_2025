@@ -26,14 +26,10 @@ import {
         </Text>
   
         <Paper size="lg" withBorder shadow="md" p={30} mt={30} radius="md">
-          <TextInput size="lg" label="Email" placeholder="you@mantine.dev" required />
-          <PasswordInput size="lg" label="Password" placeholder="Your password" required mt="md" />
-          <Group justify="space-between" mt="lg">
-            <Checkbox label="Remember me" />
-            <Anchor component="button" size="md">
-              Forgot password?
-            </Anchor>
-          </Group>
+          <TextInput size="lg" label="Email" placeholder="applicant@gmail.com" required 
+          classNames = {{label: classes.label}}/>
+          <PasswordInput size="lg" label="Password" placeholder="Your password" required mt="md" 
+          classNames = {{label: classes.label}}/>
           <Button size="lg" fullWidth mt="xl">
             Sign in
           </Button>

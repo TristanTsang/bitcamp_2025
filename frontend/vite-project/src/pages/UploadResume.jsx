@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, FileInput, Title, Button, Text, Paper } from '@mantine/core';
+import classes from "./UploadResume.module.css";
 
 function UploadResume() {
   const [file, setFile] = useState(null);
@@ -30,13 +31,14 @@ function UploadResume() {
           <Title order={2} mb="md" align="center">
             Upload Your Resume
           </Title>
-          <FileInput
+          <FileInput size="lg"
             label="Resume file"
             placeholder="Click to select your resume"
             value={file}
             onChange={setFile}
             accept=".pdf,.doc,.docx"
             required
+            classNames = {{label: classes.label}}
           />
           <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
             Submit
