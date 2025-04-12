@@ -16,7 +16,7 @@ function UploadResume() {
     };
   
     return (
-      <Container fluid px="xl" py="xl" my={40} style={{ paddingTop: 89, }}>
+      <Container fluid px="xl" py="xl" my={40} style={{ paddingTop: 89}}>
         <Paper withBorder shadow="md" p="xl">
           <Title order={2} mb="md" align="center">
             Upload Your Resume
@@ -31,8 +31,8 @@ function UploadResume() {
             required
             classNames={{ label: classes.label }}
           />
-          <Button fullWidth mt="md" onClick={handleUpload} disabled={!file || loading}>
-            {loading ? 'Uploading...' : 'Submit'}
+          <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
+            Submit
           </Button>
         </Paper>
       </Container>
