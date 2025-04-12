@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { Container, FileInput, Title, Button, Text, Paper, Grid } from '@mantine/core';
 import classes from "./UploadResume.module.css";
 import Analytics from './Analytics';
@@ -31,8 +32,8 @@ function UploadResume() {
             required
             classNames={{ label: classes.label }}
           />
-          <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
-            Submit
+          <Button fullWidth mt="md" onClick={handleUpload} disabled={!file || loading}>
+            {loading ? 'Uploading...' : 'Submit'}
           </Button>
         </Paper>
       </Container>
