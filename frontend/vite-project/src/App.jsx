@@ -8,7 +8,8 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import UploadResume from "./pages/UploadResume";
-
+import Results from "./pages/Results";
+import Leaderboard from "./pages/Leaderboard";
 import { useEffect } from "react";
 
 function App() {
