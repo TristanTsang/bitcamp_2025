@@ -11,7 +11,6 @@ import classes from "./UploadResume.module.css";
 import { useResumeStore } from "../store/useResumeStore";
 function UploadResume() {
   const [file, setFile] = useState(null);
-  const [uploaded, setUploaded] = useState(false);
 
   const { uploadResume } = useResumeStore();
 
@@ -21,41 +20,29 @@ function UploadResume() {
     reader.readAsDataURL(file);
     reader.onloadend = async () => {
       await uploadResume(reader.result);
-      setUploaded(true);
     };
   };
 
   return (
-    <Container size="sm" my={40}>
-      {!uploaded ? (
-        <Paper withBorder shadow="md" p="xl">
-          <Title order={2} mb="md" align="center">
-            Upload Your Resume
-          </Title>
-          <FileInput
-            size="lg"
-            label="Resume file"
-            placeholder="Click to select your resume"
-            value={file}
-            onChange={setFile}
-            accept=".pdf,.doc,.docx"
-            required
-            classNames={{ label: classes.label }}
-          />
-          <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
-            Submit
-          </Button>
-        </Paper>
-      ) : (
-        <Paper withBorder shadow="md" p="xl">
-          <Title order={2} mb="md" align="center">
-            Resume Uploaded 🎉
-          </Title>
-          <Text mt="lg" c="dimmed">
-            You can now proceed to analyze or score your resume.
-          </Text>
-        </Paper>
-      )}
+    <Container fluid px="xl" py="xl" my={40} style={{ paddingTop: 89 }}>
+      <Paper withBorder shadow="md" p="xl">
+        <Title order={2} mb="md" align="center">
+          Upload Your Resume
+        </Title>
+        <FileInput
+          size="lg"
+          label="Resume file"
+          placeholder="Click to select your resume (pdf)"
+          value={file}
+          onChange={setFile}
+          accept=".pdf"
+          required
+          classNames={{ label: classes.label }}
+        />
+        <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
+          Submit
+        </Button>
+      </Paper>
     </Container>
   );
 }
