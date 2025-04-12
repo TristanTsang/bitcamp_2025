@@ -12,16 +12,6 @@ import { useResumeStore } from "./store/useResumeStore";
 import { useEffect } from "react";
 
 function App() {
-  const { resumes, userResumes, getAllResumes, getUserResumes } =
-    useResumeStore();
-
-  useEffect(() => {
-    getAllResumes();
-    getUserResumes();
-  }, [getAllResumes, getUserResumes]);
-
-  console.log(userResumes);
-  console.log(resumes);
   return (
     <MantineProvider
       withGlobalStyles
