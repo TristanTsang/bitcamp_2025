@@ -5,6 +5,6 @@ import App from "./App.jsx";
 import AuthPage from "./AuthPage.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthPage />
+    <App />
   </StrictMode>
 );
