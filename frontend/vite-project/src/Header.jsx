@@ -20,6 +20,13 @@ export function Header() {
         className = {classes.title}
       >Resume Reviewer</Button>
         <Group gap={5} visibleFrom="xs" className={classes.debugGroup}>
+        <Button
+                component={Link}
+                to="/upload"
+                size="md"
+                variant='default'
+                className={classes.signup}
+            >Upload Tester</Button>
             <Button
                 component={Link}
                 to="/signup"
