@@ -41,6 +41,7 @@ export const useResumeStore = create((set, get) => ({
       console.log(error.message);
     }
   },
+  
   getAllResumes: async () => {
     try {
       const res = await axiosInstance.get("/resume/all-resumes");
