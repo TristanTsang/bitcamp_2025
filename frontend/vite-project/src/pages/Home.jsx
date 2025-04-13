@@ -4,17 +4,18 @@ import { Button } from "@mantine/core";
 function Home() {
   return (
     <div style={{ paddingTop: "5rem" }}>
-      <h1 style={{ paddingBottom: "2rem", paddingTop: "2em", color:"white"}}>
-        Resume Reviewer
+      <h1 style={{ paddingBottom: "2rem", paddingTop: "2em", color: "white" }}>
+        CosmicCV
       </h1>
       <div className="card">
         <p style={{ marginLeft: "2em", marginRight: "2em" }}>
-          Resume Reviewer helps you recognize places in your resume you
-          can strengthen to help you get your dream job. It also provides a
-          score to your resume and ranks it among other resumes, so you can see
-          how you compare to other applicants. Furthermore, you can check other
-          applicants' resumes for direction. To help you keep track of your progress, 
-          it also provides a history of your resumes and a graph of your scores.
+          CosmicCV helps you recognize places in your resume you can strengthen
+          to help you get your dream job. It also provides a score to your
+          resume and ranks it among other resumes, so you can see how you
+          compare to other applicants. Furthermore, you can check other
+          applicants' resumes for direction. To help you keep track of your
+          progress, it also provides a history of your resumes and a graph of
+          your scores.
         </p>
       </div>
       <div

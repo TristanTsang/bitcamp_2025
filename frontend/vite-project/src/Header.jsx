@@ -20,7 +20,7 @@ export function Header() {
           style={{ fontSize: 20, fontWeight: "bold" }}
           className={classes.title}
         >
-          Resume Reviewer
+          CosmicCV
         </Button>
 
         {!authUser && (
@@ -51,8 +51,7 @@ export function Header() {
         {authUser && (
           <div>
             <Group gap={5} visibleFrom="xs" className={classes.debugGroup}>
-
-            <Button
+              <Button
                 component={Link}
                 to="/history"
                 size="md"
