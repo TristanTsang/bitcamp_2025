@@ -169,7 +169,8 @@ function UploadResume() {
         <div className={classes.centerWrapper}>
           <Paper className={classes.uploadBox} ref={uploadBoxRef} 
           style={{marginTop:"5rem", border: isAnimating ? "none" : undefined}}>
-            <Text className={classes.label}>Upload your resume to get started</Text>
+            <Text className={classes.label}>
+            {isAnimating ? "" : "Upload your resume to get started"}</Text>
             <FileInput
               value={file}
               onChange={setFile}
@@ -182,7 +183,7 @@ function UploadResume() {
               disabled={!file || isAnimating}
               className={classes.submitButton}
             >
-              {isAnimating ? "Processing..." : "Submit"}
+             Submit
             </Button>
           </Paper>
         </div>

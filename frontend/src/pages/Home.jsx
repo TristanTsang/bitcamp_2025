@@ -3,13 +3,13 @@ import { Button } from "@mantine/core";
 
 function Home() {
   return (
-    <div style={{ paddingTop: "5rem" }}>
-      <h1 style={{ paddingBottom: "2rem", paddingTop: "2em", color: "white" }}>
+    <div style={{ paddingTop: "3rem" }}>
+      <h1 style={{ paddingBottom: "1.5rem", paddingTop: "2em", color: "white" }}>
         CosmicCV
       </h1>
-      <h4>An 'Out of this World' Resume Reviewer</h4>
-      <h4 style={{ paddingBottom: "2rem"}}>Gaze upon your career path that is written in the stars</h4>
+      <h4 style={{ paddingBottom: "1rem"}} >An 'Out of this World' Resume Reviewer</h4>
       <div className="card">
+      <h4 style={{ paddingBottom: "1rem"}}>Gaze upon your career path written in the stars</h4>
         <p style={{ marginLeft: "2em", marginRight: "2em" }}>
           CosmicCV helps you recognize places in your resume you can strengthen
           to help you get your dream job. It also provides a score to your
@@ -26,7 +26,7 @@ function Home() {
           flexDirection: "column",
           rowGap: "1rem",
           alignItems: "center",
-          paddingTop: "2rem",
+          paddingTop: "1.5rem",
         }}
       >
         <Button
