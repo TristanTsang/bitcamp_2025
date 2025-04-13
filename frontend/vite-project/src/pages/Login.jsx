@@ -1,4 +1,3 @@
-// Login.jsx
 import {
   Anchor,
   Button,
@@ -11,71 +10,103 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import classes from "./Login.module.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState(null);
-
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const { signin } = useAuthStore();
-  const handleSubmit = (email, password) => {
-    if (email && password) signin(email, password);
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (email && password) {
+      setLoading(true);
+      
+      try {
+        await signin(email, password);
+        setShowSuccess(true);
+        setTimeout(() => {
+          navigate('/', { replace: true });
+        }, 2000);
+      } catch (error) {
+        setLoading(false);
+        console.error("Login failed:", error);
+      }
+    }
   };
+  
+  // Other effects (like shooting stars) remain unchanged
+  
   return (
     <div className={classes.wrapper}>
+      {/* Background elements */}
+      <div className={classes.nebula}></div>
+      <div className={classes.starsAccent}></div>
+      <div className={classes.starsAccent2}></div>
+      
+      {/* Shooting stars containers */}
+      <div className={classes.shootingStar}></div>
+      <div className={classes.shootingStar}></div>
+      <div className={classes.shootingStar}></div>
+      
       <Container size="xl" className={classes.container}>
-        <div className={classes.starsAccent}></div>
-        <div className={classes.starsAccent2}></div>
+        <Title ta="center" className={classes.title}>
+          Welcome back!
+        </Title>
+        <Text c="dimmed" size="md" ta="center" mt={5} className={classes.subtitle}>
+          Don't have an account yet?{" "}
+          <Anchor size="md" component={Link} to="/signup" className={classes.anchor}>
+            Create account
+          </Anchor>
+        </Text>
         
-      <Title ta="center" className={classes.title}>
-        Welcome back!
-      </Title>
-      <Text c="dimmed" size="md" ta="center" mt={5}>
-        Don't have an account yet?{" "}
-        <Anchor size="md" component={Link} to="/signup" className={classes.anchor}>
-          Create account
-        </Anchor>
-      </Text>
-
-      <Paper size="lg" withBorder shadow="md" p={35} mt={30} radius="lg" className={classes.paper}>
+        <Paper size="lg" withBorder shadow="md" p={35} mt={30} radius="lg" className={classes.paper}>
           <div className={classes.formGrid}>
             <div className={classes.formColumn}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSubmit(email, password);
-              }}
-            >
-          <TextInput
-            size="md"
-            label="Email"
-            placeholder="applicant@gmail.com"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            classNames={{ label: classes.label , input: classes.input }}
-          />
-          <PasswordInput
-            size="lg"
-            label="Password"
-            placeholder="Your password"
-            required
-            mt="md"
-            onChange={(e) => setPassword(e.target.value)}
-            classNames={{ label: classes.label, input: classes.input }}
-          />
-          <Button type="submit" size="lg" fullWidth mt="xl">
-            Sign in
-          </Button>
-        </form>
-
-        <Anchor 
-                size="sm" 
-                ta="center" 
-                display="block" 
-                mt="md" 
+              <form onSubmit={handleSubmit}>
+                <TextInput
+                  size="md"
+                  label="Email"
+                  placeholder="applicant@gmail.com"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  classNames={{ label: classes.label, input: classes.input }}
+                  disabled={loading}
+                />
+                <PasswordInput
+                  size="lg"
+                  label="Password"
+                  placeholder="Your password"
+                  required
+                  mt="md"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  classNames={{ label: classes.label, input: classes.input }}
+                  disabled={loading}
+                />
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  fullWidth 
+                  mt="xl"
+                  loading={loading}
+                >
+                  {loading ? "Logging in..." : "Sign in"}
+                </Button>
+              </form>
+              <Anchor
+                size="sm"
+                ta="center"
+                display="block"
+                mt="md"
                 className={classes.forgotPassword}
               >
                 Forgot your password?
@@ -83,6 +114,9 @@ function Login() {
             </div>
             
             <div className={classes.decorativeColumn}>
+              <div className={classes.orbitalRing}></div>
+              <div className={classes.orbitalRing}></div>
+              
               <div className={classes.decorativeCircle}></div>
               <Text className={classes.decorativeText}>Continue your journey</Text>
               <div className={classes.decorativeStar1}></div>
@@ -90,8 +124,19 @@ function Login() {
               <div className={classes.decorativeStar3}></div>
             </div>
           </div>
-      </Paper>
-    </Container>
+        </Paper>
+      </Container>
+      
+      {/* Conditionally render the login success overlay only when on /login */}
+      {location.pathname === '/login' && (
+        <div className={`${classes.loginSuccess} ${showSuccess ? classes.active : ""}`}>
+          <div className={classes.successInner}>
+            <div className={classes.successCircle}></div>
+            <div className={classes.successText}>Welcome Back!</div>
+            <div className={classes.successSubtext}>Redirecting to your dashboard...</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

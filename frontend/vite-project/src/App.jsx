@@ -4,7 +4,7 @@ import './App.css'
 import { MantineProvider, createTheme } from '@mantine/core';
 import { Header } from './Header';
 import '@mantine/core/styles.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -12,7 +12,6 @@ import UploadResume from './pages/UploadResume';
 import Results from './pages/Results';
 import Leaderboard from './pages/Leaderboard';
 import StarryBackground from './StarryBackground.jsx';
-import { useEffect } from "react";
 import { useAuthStore } from "./store/useAuthStore";
 
 // Create a custom dreamy theme
