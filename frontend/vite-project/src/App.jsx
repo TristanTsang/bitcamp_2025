@@ -78,7 +78,7 @@ function App() {
           <Routes>
           <Route
             path="/"
-            element={authUser ? <Home /> : <Navigate to="/signup" />}
+            element={authUser ? <Home /> : <Navigate to="/login" />}
           />
           <Route
             path="/signup"

@@ -27,6 +27,7 @@ function Signup() {
   };
 
   return (
+    <div style = {{paddingTop: '4rem'}}>
     <div className={classes.wrapper}>
       <Container size="xl" className={classes.container}>
         <div className={classes.starsAccent}></div>
@@ -101,6 +102,7 @@ function Signup() {
           </div>
       </Paper>
     </Container>
+    </div>
     </div>
   );
 }

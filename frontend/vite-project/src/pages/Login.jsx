@@ -45,6 +45,7 @@ function Login() {
   // Other effects (like shooting stars) remain unchanged
   
   return (
+    <div style = {{paddingTop: '4rem'}}>
     <div className={classes.wrapper}>
       {/* Background elements */}
       <div className={classes.nebula}></div>
@@ -137,6 +138,7 @@ function Login() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }
