@@ -19,61 +19,26 @@ function UploadResume() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  /*</Container>
   const handleUpload = async () => {
-    if (!file) {
-      console.warn('No file selected');
-      return;
-    }
-
+    if (!file) return;
     setLoading(true);
     setError(null);
-
-    const formData = new FormData();
-    console.log('📄 Selected file:', file);
-    formData.append('resume', file);
-
     try {
-      console.log('📤 Sending request to backend...');
-      const response = await fetch('http://localhost:3000/api/review-resume', {
-        method: 'POST',
-        body: formData,
+      const readerResult = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
       });
 
-      const contentType = response.headers.get('content-type');
-      console.log('📨 Response headers:', contentType);
+      await uploadResume(readerResult);
 
-      if (!contentType || !contentType.includes('application/json')) {
-        const rawText = await response.text();
-        console.error('❌ Response is not JSON. Raw response:', rawText);
-        alert('Unexpected response from server.');
-        return;
-      }
-
-      const data = await response.json();
-      console.log('✅ Response from backend:', data);
-
-      if (response.ok) {
-        localStorage.setItem('resultData', JSON.stringify(data));
-        navigate('/results', { state: { resultData: data, file } });
-      } else {
-        const errorMessage = data?.error || 'Upload failed';
-        setError(errorMessage);
-      }
-    } catch (err) {
-      console.error('🔥 Network or parsing error:', err);
-      setError('Something went wrong while uploading your resume.');
+      navigate("/results");
+    } catch (error) {
+      console.log(error.data.message);
     } finally {
       setLoading(false);
     }
-  };*/
-  const handleUpload = async () => {
-    if (!file) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = async () => {
-      await uploadResume(reader.result);
-    };
   };
 
   return (
@@ -98,8 +63,13 @@ function UploadResume() {
           </Text>
         )}
 
-        <Button fullWidth mt="md" onClick={handleUpload} disabled={!file}>
-          Submit
+        <Button
+          fullWidth
+          mt="md"
+          onClick={handleUpload}
+          disabled={!file || loading}
+        >
+          {loading ? <Loader size="sm" color="white" /> : "Submit"}
         </Button>
       </Paper>
     </Container>

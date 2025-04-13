@@ -1,31 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Container, Title, Paper, Text, Grid, Button } from '@mantine/core';
-import Analytics from './Analytics'; // Assuming Analytics already displays the score and comparison
+import { Container, Title, Paper, Text, Grid, Button } from "@mantine/core";
+import Analytics from "./Analytics"; // Assuming Analytics already displays the score and comparison
+import { useResumeStore } from "../store/useResumeStore";
 
 function Results() {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { userResumes } = useResumeStore();
+  console.log(userResumes[0].analysis);
 
   // Get the resultData and file from the location state
-  const { resultData, file } = location.state || {};
-
-  useEffect(() => {
-    if (!resultData) {
-      navigate('/');
-    } 
-  }, [resultData, navigate]);
-
-  if (!resultData) {
-    return null; // Optionally show loading spinner or redirect
-  }
-
+  const resultData = userResumes[0].analysis;
   // Function to handle resume download
   const handleDownload = () => {
-    const url = URL.createObjectURL(file);
-    const link = document.createElement('a');
+    const url = userResumes[0].resume;
+    const link = document.createElement("a");
     link.href = url;
-    link.download = file.name; // Set the downloaded file's name
+    link.download = userResumes[0].username + "Resume"; // Set the downloaded file's name
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -52,25 +40,23 @@ function Results() {
           <Grid.Col span={12} md={6}>
             <Paper withBorder shadow="sm" p="lg">
               <Title order={3}>Resume</Title>
-              {file ? (
+              {
                 <>
-                  <Text mt="md">Resume uploaded: {file.name}</Text>
+                  <Text mt="md">Resume uploaded:</Text>
                   <Button mt="md" onClick={handleDownload}>
                     Download Resume
                   </Button>
 
                   {/* PDF Viewer */}
                   <iframe
-                    src={URL.createObjectURL(file)}
+                    src={userResumes[0].resume}
                     width="100%"
                     height="600px"
-                    style={{ border: 'none', marginTop: '1rem' }}
+                    style={{ border: "none", marginTop: "1rem" }}
                     title="Resume Preview"
                   ></iframe>
                 </>
-              ) : (
-                <Text mt="md">No resume available</Text>
-              )}
+              }
             </Paper>
           </Grid.Col>
         </Grid>

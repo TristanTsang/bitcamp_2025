@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./App.css";
-import { MantineProvider, Button, createTheme } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import { Header } from "./Header";
 import "@mantine/core/styles.css";
 import {

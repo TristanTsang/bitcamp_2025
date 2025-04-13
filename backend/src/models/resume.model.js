@@ -14,11 +14,6 @@ const resumeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
-    parsedData: {
-      type: Object,
-      required: true,
-    },
     analysis: {
       type: Object,
       required: true,
