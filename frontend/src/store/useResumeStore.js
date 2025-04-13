@@ -20,13 +20,12 @@ export const useResumeStore = create((set, get) => ({
           },
         }
       );
-      toast.success("Resume Uploaded");
+
       set({
         userResumes: [res.data, ...get().resumes],
         selectedResume: res.data,
       });
     } catch (error) {
-      toast.error("Failed to upload resume");
       console.log(error.message);
     }
   },
@@ -46,7 +45,6 @@ export const useResumeStore = create((set, get) => ({
       });
       set({ userResumes: res.data });
     } catch (error) {
-      toast.error("Failed to load user resumes");
       console.log(error.message);
     }
   },
@@ -56,7 +54,6 @@ export const useResumeStore = create((set, get) => ({
 
       set({ resumes: res.data });
     } catch (error) {
-      toast.error("Failed to load resumes");
       console.log(error.message);
     }
   },

@@ -26,7 +26,6 @@ export const updateUsername = async (req, res) => {
   try {
     const { username } = req.body;
     const userId = req.user._id;
-
     if (!username) {
       return res.status(400).json({ message: "Username is required" });
     }
@@ -34,7 +33,7 @@ export const updateUsername = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { username: username },
-      { new: true }
+      { new: true, upsert: true }
     );
 
     res.status(200).json(updatedUser);

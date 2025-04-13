@@ -11,13 +11,13 @@ export const protectRoute = async (req, res, next) => {
   try {
     const decodedToken = await admin.auth().verifyIdToken(token);
 
-    const { uid, name } = decodedToken;
-    let user = await User.findOne({ uid });
-
-    if (!user) {
-      const newUser = new User({ uid: uid });
-      user = await User.create(newUser);
-    }
+    const { uid } = decodedToken;
+    const user = await User.findOneAndUpdate(
+      { uid },
+      { $setOnInsert: { uid } },
+      { new: true, upsert: true }
+    );
+    console.log(user);
 
     if (!user) return res.status(404).json({ message: "User not found" });
 

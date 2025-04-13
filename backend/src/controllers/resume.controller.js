@@ -10,7 +10,7 @@ export const uploadResume = async (req, res) => {
   try {
     const { resumeFile } = req.body;
     const userId = req.user.uid;
-
+    console.log(req.user);
     let resumeUrl;
     if (!resumeFile) {
       return res.status(404).json({ message: "No File Provided" });
@@ -65,11 +65,10 @@ export const uploadResume = async (req, res) => {
       });
     }
 
-    console.log(structuredData);
-
+    let username = req.user.username ? req.user.username : "John Doe";
     const newResume = new Resume({
       uid: userId,
-      username: req.user.username,
+      username: username,
       analysis: structuredData,
       elo: structuredData.score,
       resume: resumeUrl,
