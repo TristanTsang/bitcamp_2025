@@ -497,7 +497,7 @@ Compare the user's resume with the top resumes above and give feedback that is v
 - Every single time that you mention or compare the inputted resume to the 11 top resumes, always refer them as "the top resumes in our database" or something along those lines.
 
 
-Now compare the uploaded resume to the top resumes. I want you to return the response in strict JSON format like this (no explanation, no markdown). Dont include anything before or after the curly brackets either. Dont include the :
+Now compare the uploaded resume to the top resumes. I want you to return the response in strict JSON format like this (no explanation, no markdown). Dont include anything before or after the curly brackets either. Strengths, weaknesses, and suggestedActivities should be an array:
 
 
 {
@@ -510,6 +510,4 @@ Now compare the uploaded resume to the top resumes. I want you to return the res
     educationScore: ,
     comparisonText: ,
 }
-
-
 `;
