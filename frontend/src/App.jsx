@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import "./App.css";
 import { MantineProvider, createTheme } from "@mantine/core";
-import { Header } from "./Header";
+import { Header } from "./Header.js";
 import "@mantine/core/styles.css";
 import {
   BrowserRouter as Router,
@@ -10,15 +10,15 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Home from "./pages/Home";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import UploadResume from "./pages/UploadResume";
-import Results from "./pages/Results";
-import Leaderboard from "./pages/Leaderboard";
-import StarryBackground from "./StarryBackground.jsx";
-import { useAuthStore } from "./store/useAuthStore";
-import MyResumePage from "./pages/MyResumes.jsx";
+import Home from "./pages/Home.js";
+import Signup from "./pages/Signup.js";
+import Login from "./pages/Login.js";
+import UploadResume from "./pages/UploadResume.js";
+import Results from "./pages/Results.js";
+import Leaderboard from "./pages/Leaderboard.js";
+import StarryBackground from "./StarryBackground.js";
+import { useAuthStore } from "./store/useAuthStore.js";
+import MyResumePage from "./pages/MyResumes.js";
 import { useResumeStore } from "./store/useResumeStore.js";
 
 // Create a custom dreamy theme
