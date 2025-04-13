@@ -1,65 +1,82 @@
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Grid, Paper, Title, Text, Button } from '@mantine/core';
-import Analytics from './Analytics';
+import { Container, Title, Paper, Text, Grid, Button } from '@mantine/core';
+import Analytics from './Analytics'; // Assuming Analytics already displays the score and comparison
 
-function ResultsPage() {
+function Results() {
   const location = useLocation();
   const navigate = useNavigate();
-  const file = location.state?.file;
 
-  if (!file) {
-    return (
-      <Paper p="xl">
-        <Title order={3}>No resume uploaded</Title>
-        <Text mt="md">Please go back and upload your resume first.</Text>
-        <Button mt="md" onClick={() => navigate('/')}>
-          Back to Upload
-        </Button>
-      </Paper>
-    );
+  // Get the resultData and file from the location state
+  const { resultData, file } = location.state || {};
+
+  useEffect(() => {
+    if (!resultData) {
+      navigate('/');
+    } 
+  }, [resultData, navigate]);
+
+  if (!resultData) {
+    return null; // Optionally show loading spinner or redirect
   }
 
+  // Function to handle resume download
+  const handleDownload = () => {
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = file.name; // Set the downloaded file's name
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
-    <div style = {{ paddingTop: 89 ,width: '100vw', marginLeft: 'calc(-50vw + 50%)', boxSizing: 'border-box',
+    <Container size="lg" my={40}>
+      <Paper withBorder shadow="md" p="xl">
+        <Grid gutter="lg">
+          {/* Left Column: Analysis Section */}
+          <Grid.Col span={12} md={6}>
+            <Analytics
+              score={resultData.score}
+              strengths={resultData.strengths}
+              weaknesses={resultData.weaknesses}
+              suggestedActivities={resultData.suggestedActivities}
+              experienceScore={resultData.experienceScore}
+              skillsScore={resultData.skillsScore}
+              educationScore={resultData.educationScore}
+              comparisonText={resultData.comparisonText}
+            />
+          </Grid.Col>
 
-    }}>
-    <Grid align="stretch" px ='xl' py="md">
-      {/* Analytics */}
-      <Grid.Col span={{ base: 12, md: 6 }} px="md">
-        <Paper withBorder radius="md" shadow="md" style={{ height: '100%' }}>
-        <Analytics
-            score={78}
-            strengths={['Strong project experience', 'Quantified achievements', 'awdsawd', 'awdsawdsa', 'awdsawd']}
-            weaknesses={['Missing keywords', 'No summary section']}
-            suggestedActivities={[
-                'Add a summary highlighting your goals',
-                'Include more industry-specific keywords',
-            ]}
-            experienceScore={85}
-            skillsScore={72}
-            educationScore={64}
-            comparisonText="Your resume ranks in the top 25% of applicants for similar roles."
-        />
-        </Paper>
-      </Grid.Col>
+          {/* Right Column: Resume Preview */}
+          <Grid.Col span={12} md={6}>
+            <Paper withBorder shadow="sm" p="lg">
+              <Title order={3}>Resume</Title>
+              {file ? (
+                <>
+                  <Text mt="md">Resume uploaded: {file.name}</Text>
+                  <Button mt="md" onClick={handleDownload}>
+                    Download Resume
+                  </Button>
 
-      {/* PDF Preview */}
-      <Grid.Col span={{ base: 12, md: 6 }} px="md">
-        <Paper shadow="md" radius="md" withBorder style={{ height: '100%' , display: 'flex', flexDirection: "column", 
-            paddingLeft: "1rem", paddingRight: "1rem", paddingTop:"1rem"}}>
-        <Title order={2} align="center" mb="md">
-          Your Resume
-        </Title>
-          <iframe
-            src={URL.createObjectURL(file)}
-            style={{ width: '100%', height: '75vh', border: '1px solid #ccc' , flex: 1, borderRadius: '5px'}}
-            title="Resume PDF Preview"
-          />
-        </Paper>
-      </Grid.Col>
-    </Grid>
-    </div>
+                  {/* PDF Viewer */}
+                  <iframe
+                    src={URL.createObjectURL(file)}
+                    width="100%"
+                    height="600px"
+                    style={{ border: 'none', marginTop: '1rem' }}
+                    title="Resume Preview"
+                  ></iframe>
+                </>
+              ) : (
+                <Text mt="md">No resume available</Text>
+              )}
+            </Paper>
+          </Grid.Col>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 
-export default ResultsPage;
+export default Results;
