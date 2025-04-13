@@ -123,15 +123,6 @@ function Login() {
                     {loading ? "Logging in..." : "Sign in"}
                   </Button>
                 </form>
-                <Anchor
-                  size="sm"
-                  ta="center"
-                  display="block"
-                  mt="md"
-                  className={classes.forgotPassword}
-                >
-                  Forgot your password?
-                </Anchor>
               </div>
 
               <div className={classes.decorativeColumn}>
