@@ -38,29 +38,31 @@ function MyResumePage() {
     >
       <h1 style={{ paddingTop: "2em" }}>Your Resume History</h1>
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Paper
-          className={classes.paper}
-          w={400}
-          h={200}
-          mb="xl"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Sparkline
-            w={300}
-            h={100}
-            data={eloHistory}
-            curveType="linear"
-            color="purple"
-            fillOpacity={0.6}
-            strokeWidth={2}
-          />
-        </Paper>
-      </div>
+      {userResumes.length > 0 && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Paper
+            className={classes.paper}
+            w={400}
+            h={200}
+            mb="xl"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Sparkline
+              w={300}
+              h={100}
+              data={eloHistory}
+              curveType="linear"
+              color="purple"
+              fillOpacity={0.6}
+              strokeWidth={2}
+            />
+          </Paper>
+        </div>
+      )}
 
       <div
         style={{
@@ -110,6 +112,9 @@ function MyResumePage() {
             </div>
           </Paper>
         ))}
+        {userResumes.length === 0 && (
+          <Text size="sm">You have no resumes to view</Text>
+        )}
       </div>
     </div>
   );
