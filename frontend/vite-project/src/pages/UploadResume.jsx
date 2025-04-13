@@ -1,36 +1,49 @@
-import { useState, useRef, useEffect } from 'react';
-import { Container, FileInput, Title, Button, Text, Paper } from "@mantine/core";
-import { useNavigate } from 'react-router-dom';
+import { useState, useRef, useEffect } from "react";
+import {
+  Container,
+  FileInput,
+  Title,
+  Button,
+  Text,
+  Paper
+} from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import classes from "./UploadResume.module.css";
 import { useResumeStore } from "../store/useResumeStore";
 
 function UploadResume() {
+  const { uploadResume } = useResumeStore();
   const [file, setFile] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
   const navigate = useNavigate();
+  
   const canvasRef = useRef(null);
   const uploadBoxRef = useRef(null);
 
+  // Black hole animation effect
   useEffect(() => {
     if (!isAnimating || !canvasRef.current || !uploadBoxRef.current) return;
-
+    
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     const uploadBox = uploadBoxRef.current;
     const uploadBoxRect = uploadBox.getBoundingClientRect();
-
+    
+    // Set canvas dimensions
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
+    
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
-
+    
     let boxX = uploadBoxRect.left + uploadBoxRect.width / 2;
     let boxY = uploadBoxRect.top + uploadBoxRect.height / 2;
     let boxWidth = uploadBoxRect.width;
     let boxHeight = uploadBoxRect.height;
     let opacity = 1;
-
+    
+    // Create particles for the black hole effect
     const particles = Array.from({ length: 300 }, () => {
       const angle = Math.random() * Math.PI * 2;
       const radius = Math.random() * 150 + 50;
@@ -39,16 +52,15 @@ function UploadResume() {
         y: centerY + Math.sin(angle) * radius,
         size: Math.random() * 3 + 1,
         speed: Math.random() * 3 + 1,
-        color: `hsl(${Math.random() * 60 + 240}, 70%, 50%)`,
+        color: `hsl(${Math.random() * 60 + 240}, 70%, 50%)`
       };
     });
-
+    
     let animationId;
-
     const animateBlackHole = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Black hole
+      
+      // Draw black hole (central gradient)
       const gradient = ctx.createRadialGradient(centerX, centerY, 5, centerX, centerY, 200);
       gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
       gradient.addColorStop(0.7, 'rgba(20, 0, 40, 0.8)');
@@ -58,7 +70,7 @@ function UploadResume() {
       ctx.fillStyle = gradient;
       ctx.fill();
 
-      // Accretion disk
+      // Draw accretion disk (rotating elliptical gradient)
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(Date.now() * 0.0005);
@@ -73,66 +85,83 @@ function UploadResume() {
       ctx.fillStyle = diskGradient;
       ctx.fill();
       ctx.restore();
-
-      // Particles
-      particles.forEach(p => {
-        const dx = centerX - p.x;
-        const dy = centerY - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 10) {
-          p.x = centerX + Math.cos(Math.random() * Math.PI * 2) * 200;
-          p.y = centerY + Math.sin(Math.random() * Math.PI * 2) * 200;
+      
+      // Animate particles
+      particles.forEach(particle => {
+        const dx = centerX - particle.x;
+        const dy = centerY - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 10) {
+          particle.x = centerX + Math.cos(Math.random() * Math.PI * 2) * 200;
+          particle.y = centerY + Math.sin(Math.random() * Math.PI * 2) * 200;
         } else {
           const angle = Math.atan2(dy, dx);
-          const force = 30 / dist;
-          p.x += Math.cos(angle) * p.speed * force;
-          p.y += Math.sin(angle) * p.speed * force;
+          const force = 30 / distance;
+          particle.x += Math.cos(angle) * particle.speed * force;
+          particle.y += Math.sin(angle) * particle.speed * force;
         }
-
+        
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
         ctx.fill();
       });
-
-      // Suck in the upload box
+      
+      // Animate the upload box being sucked into the black hole
       if (opacity > 0) {
         const dx = centerX - boxX;
         const dy = centerY - boxY;
         const distance = Math.sqrt(dx * dx + dy * dy);
-
+        
         boxX += dx * 0.02;
         boxY += dy * 0.02;
         boxWidth *= 0.99;
         boxHeight *= 0.99;
         opacity *= 0.99;
-
+        
         ctx.globalAlpha = opacity;
         ctx.fillStyle = '#6b21a8';
         ctx.fillRect(boxX - boxWidth / 2, boxY - boxHeight / 2, boxWidth, boxHeight);
         ctx.globalAlpha = 1;
-
-        if (distance < 15 || opacity < 0.05) {
+        
+        // Only navigate if the upload is complete
+        if (isUploaded && (distance < 15 || opacity < 0.05)) {
           setTimeout(() => {
             cancelAnimationFrame(animationId);
-            navigate('/results', { state: { file } });
+            navigate("/results", { state: { file } });
           }, 500);
         }
       }
-
+      
       animationId = requestAnimationFrame(animateBlackHole);
     };
-
+    
     animateBlackHole();
     return () => cancelAnimationFrame(animationId);
-  }, [isAnimating, file, navigate]);
-
-  const handleUpload = () => {
+  }, [isAnimating, file, navigate, isUploaded]);
+  
+  const handleUpload = async () => {
     if (!file) return;
     setIsAnimating(true);
+    try {
+      // Read file as Data URL for upload
+      const readerResult = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+      });
+      // Upload resume to the database via the store
+      await uploadResume(readerResult);
+      // Mark as uploaded
+      setIsUploaded(true);
+    } catch (error) {
+      console.log("Upload error:", error.message);
+      setIsAnimating(false);
+    }
   };
-
+  
   return (
     <div className={classes.pageWrapper}>
       <Container size="sm" className={classes.container}>
@@ -149,7 +178,7 @@ function UploadResume() {
             />
             <Button
               onClick={handleUpload}
-              disabled={!file}
+              disabled={!file || isAnimating}
               className={classes.submitButton}
             >
               {isAnimating ? "Processing..." : "Submit"}

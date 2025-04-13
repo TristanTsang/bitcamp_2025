@@ -4,8 +4,17 @@ import { useResumeStore } from "../store/useResumeStore";
 
 function Results() {
   const { userResumes } = useResumeStore();
-  console.log(userResumes);
+  console.log("userResumes: " + userResumes);
 
+  if (userResumes.length > 0) {
+    const resultData = userResumes[0].analysis;
+    // Proceed with using resultData...
+  } else {
+    // Handle the case when there is no resume data:
+    console.warn("No resumes found in the store");
+    // You might show an error message or a loader, for example:
+    return <div>Loading resume data…</div>;
+  }
   // Get the resultData and file from the location state
   const resultData = userResumes[0].analysis;
   // Function to handle resume download
