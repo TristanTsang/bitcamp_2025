@@ -12,6 +12,8 @@ import UploadResume from './pages/UploadResume';
 import Results from './pages/Results';
 import Leaderboard from './pages/Leaderboard';
 import StarryBackground from './StarryBackground.jsx';
+import { useEffect } from "react";
+import { useAuthStore } from "./store/useAuthStore";
 
 // Create a custom dreamy theme
 const dreamyTheme = createTheme({
@@ -59,6 +61,10 @@ const dreamyTheme = createTheme({
 });
 
 function App() {
+  const { checkAuth, authUser } = useAuthStore();
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
   return (
     <MantineProvider 
       theme={dreamyTheme}
@@ -70,14 +76,23 @@ function App() {
         <Router>
           <Header/>
           <div className="content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/upload" element={<UploadResume />} />
-              <Route path="/results" element={<Results />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-            </Routes>
+          <Routes>
+          <Route
+            path="/"
+            element={authUser ? <Home /> : <Navigate to="/signup" />}
+          />
+          <Route
+            path="/signup"
+            element={!authUser ? <Signup /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/login"
+            element={!authUser ? <Login /> : <Navigate to="/" />}
+          />
+          <Route path="/upload" element={<UploadResume />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+        </Routes>
           </div>
         </Router>
       </div>
