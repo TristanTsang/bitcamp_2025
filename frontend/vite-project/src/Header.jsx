@@ -51,6 +51,17 @@ export function Header() {
         {authUser && (
           <div>
             <Group gap={5} visibleFrom="xs" className={classes.debugGroup}>
+
+            <Button
+                component={Link}
+                to="/history"
+                size="md"
+                className={classes.login}
+                style={{ backgroundColor: "#7668fc", marginRight: "1rem" }}
+              >
+                My Resumes
+              </Button>
+
               <Button
                 component={Link}
                 onClick={() => {
@@ -58,7 +69,7 @@ export function Header() {
                 }}
                 size="md"
                 variant="default"
-                style={{ backgroundColor: "#7668fc" }}
+                style={{ backgroundColor: "#7668fc", marginRight: "0.5rem" }}
                 className={classes.signup}
               >
                 Logout

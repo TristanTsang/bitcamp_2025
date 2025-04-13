@@ -21,13 +21,21 @@ export const useResumeStore = create((set, get) => ({
         }
       );
       toast.success("Resume Uploaded");
-      set({ userResumes: [res.data, ...get().resumes] });
+      set({
+        userResumes: [res.data, ...get().resumes],
+        selectedResume: res.data,
+      });
     } catch (error) {
       toast.error("Failed to upload resume");
       console.log(error.message);
     }
   },
 
+  setSelectedResume: (resume) => {
+    set({
+      selectedResume: resume,
+    });
+  },
   getUserResumes: async () => {
     const token = await auth.currentUser.getIdToken();
     try {

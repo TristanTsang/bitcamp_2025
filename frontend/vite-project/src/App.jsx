@@ -18,6 +18,8 @@ import Results from "./pages/Results";
 import Leaderboard from "./pages/Leaderboard";
 import StarryBackground from "./StarryBackground.jsx";
 import { useAuthStore } from "./store/useAuthStore";
+import MyResumePage from "./pages/MyResumes.jsx";
+import { useResumeStore } from "./store/useResumeStore.js";
 
 // Create a custom dreamy theme
 const dreamyTheme = createTheme({
@@ -66,6 +68,8 @@ const dreamyTheme = createTheme({
 
 function App() {
   const { checkAuth, authUser } = useAuthStore();
+  const { selectedResume } = useResumeStore();
+
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -91,7 +95,14 @@ function App() {
                 element={!authUser ? <Login /> : <Navigate to="/" />}
               />
               <Route path="/upload" element={<UploadResume />} />
-              <Route path="/results" element={<Results />} />
+              <Route
+                path="/history"
+                element={authUser ? <MyResumePage /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/results"
+                element={selectedResume ? <Results /> : <Navigate to="/" />}
+              />
               <Route path="/leaderboard" element={<Leaderboard />} />
             </Routes>
           </div>
