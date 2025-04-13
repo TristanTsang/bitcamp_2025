@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import { auth } from "../lib/firebase";
 import toast from "react-hot-toast";
+
 export const useResumeStore = create((set, get) => ({
   userResumes: [],
   selectedResume: null,
