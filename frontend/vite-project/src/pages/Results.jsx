@@ -3,17 +3,17 @@ import Analytics from "./Analytics"; // Assuming Analytics already displays the 
 import { useResumeStore } from "../store/useResumeStore";
 
 function Results() {
-  const { userResumes } = useResumeStore();
+  const { userResumes, selectedResume } = useResumeStore();
   console.log(userResumes);
 
   // Get the resultData and file from the location state
-  const resultData = userResumes[0].analysis;
+  const resultData = selectedResume.analysis;
   // Function to handle resume download
   const handleDownload = () => {
-    const url = userResumes[0].resume;
+    const url = selectedResume.resume;
     const link = document.createElement("a");
     link.href = url;
-    link.download = userResumes[0].username + "Resume"; // Set the downloaded file's name
+    link.download = selectedResume.username + "Resume"; // Set the downloaded file's name
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -49,7 +49,7 @@ function Results() {
 
                   {/* PDF Viewer */}
                   <iframe
-                    src={userResumes[0].resume}
+                    src={selectedResume.resume}
                     width="100%"
                     height="600px"
                     style={{ border: "none", marginTop: "1rem" }}
