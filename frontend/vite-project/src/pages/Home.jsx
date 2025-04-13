@@ -3,15 +3,17 @@ import { Button } from '@mantine/core';
 
 function Home() {
     return (
-        <>
-        <h1>Resume Reviewer</h1>
+        <div style = {{paddingTop: '5rem'}}>
+        <h1 style={{paddingBottom: '2rem'}}
+        >Resume Reviewer</h1>
         <div className="card">
           <p>
             Resume Reviewer helps you recognize places in your resume where you can strengthen to help you get your dream job.
             It also provides a score to your resume and ranks it among other resumes, so you can see how you compare to other applicants.
           </p>
         </div>
-        <div className="card" style={{ display: "flex", flexDirection: "column", rowGap: "1rem", alignItems: "center"}}>
+        <div style={{ display: "flex", flexDirection: "column", rowGap: "1rem", alignItems: "center", paddingTop: "3rem"
+        }}>
         <Button
                 w="auto"
                 component={Link}
@@ -29,7 +31,7 @@ function Home() {
                 style={{ alignSelf: 'center' }}
             >Leaderboard</Button>
         </div>
-        </>
+        </div>
     );
   }
   

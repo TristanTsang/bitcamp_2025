@@ -1,65 +1,81 @@
+/* Header.module.css */
 .header {
-    height: 89px;
-    margin-bottom: 120px;
-    border-bottom: 1px solid lightslategray;
-    position: fixed; /* Sticks it to the top */
-    background-color: #3b3b3b; /* or whatever your dark theme color is */
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 0rem;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
+  height: 80px;
+  margin-bottom: 120px;
+  border-bottom: 1px solid rgba(153, 51, 255, 0.3);
+  position: fixed;
+  background-color: #190a29; /* Darker purple for header */
+  backdrop-filter: blur(10px);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
 
-  .inner {
-    height: 56px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.inner {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .title {
-    font-size: 30px;
-    font-style: bold;
-  }
+.title {
+  font-size: 30px;
+  font-weight: bold !important;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(153, 51, 255, 0.7) !important;
+  transition: all 0.3s ease;
+}
 
-  .signup {
-    line-height: 1;
-    padding: 8px 2rem;
-    border-radius: var(--mantine-radius-md);
-    text-decoration: none;
-    color: #FFFFFF;
-    font-size: var(--mantine-font-size-md);
-    font-weight: 500;
-  
-    @mixin hover {
-      background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
-    }
-  
-    [data-mantine-color-scheme] &[data-active] {
-      background-color: var(--mantine-color-blue-filled);
-      color: var(--mantine-color-white);
-    }
-  }
+.title:hover {
+  text-shadow: 0 0 15px rgba(153, 51, 255, 1) !important;
+  transform: translateY(-2px);
+}
 
-  .login {
-    line-height: 1;
-    padding: 8px 1rem;
-    border-radius: var(--mantine-radius-md);
-    text-decoration: none;
-    color: #FFFFFF;
-    font-size: var(--mantine-font-size-md);
-    font-weight: 500;
-    background-color: #7668fc;
-    border-radius: 2px;
-  
-    @mixin hover {
-      background-color: #0000ff;
-    }
-  
-    [data-mantine-color-scheme] &[data-active] {
-      color: var(--mantine-color-white);
-    }
-  }
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+}
+
+.signup {
+  line-height: 1;
+  padding: 8px 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #e6ccff !important;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid rgba(153, 51, 255, 0.7) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.signup:hover {
+  background-color: rgba(153, 51, 255, 0.2) !important;
+  border-color: rgba(153, 51, 255, 1) !important;
+  box-shadow: 0 0 12px rgba(153, 51, 255, 0.5) !important;
+  transform: translateY(-2px);
+}
+
+.login {
+  line-height: 1;
+  padding: 8px 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ffffff !important;
+  font-size: 16px;
+  font-weight: 500;
+  background: linear-gradient(135deg, #9933ff, #6600cc) !important;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(153, 51, 255, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+
+.login:hover {
+  box-shadow: 0 0 15px rgba(153, 51, 255, 0.8) !important;
+  transform: translateY(-2px);
+}

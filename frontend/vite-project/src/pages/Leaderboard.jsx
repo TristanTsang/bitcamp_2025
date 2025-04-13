@@ -19,7 +19,7 @@ function Leaderboard() {
     async function fetchScores() {
       setLoading(true);
       try {
-        // Replace with actual fetch call to your backend
+        // Replace with your actual fetch call
         const fakeData = [
           { name: 'Alice Johnson', score: 92 },
           { name: 'Ben Li', score: 88 },
@@ -43,43 +43,67 @@ function Leaderboard() {
 
   return (
     <div
-    style={{
+      style={{
         minHeight: '100vh',
-        background: 'linear-gradient(90deg, rgba(147, 42, 155, 1) 0%, rgba(89, 160, 198, 1) 48%, rgba(87, 173, 199, 1) 50%, rgba(206, 237, 83, 1) 100%)',
+        background: 'linear-gradient(135deg, #2a0a4a 0%, #4a1577 50%, #2a0a4a 100%)',
         padding: '5rem',
-        width: '100vw', 
-        marginLeft: 'calc(-50vw + 50%)'
-      }}>
-    <Container size="sm" py="xl">
-      <Title align="center" mb="lg" style={{ fontFamily: 'Copperplate, fantasy', fontStyle: "bold", color: "#FFFFFF"}}    >
-        🏆 Record of Resumes 🏆
-      </Title>
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Container size="sm" py="xl">
+        <Title
+          align="center"
+          mb="lg"
+          style={{
+            fontFamily: 'Copperplate, fantasy',
+            fontWeight: 'bold',
+            color: '#f2e6ff',
+            textShadow: '0 0 10px rgba(153, 51, 255, 0.5)',
+          }}
+        >
+          🏆 Record of Resumes 🏆
+        </Title>
 
-      {loading ? (
-        <Center>
-          <Loader />
-        </Center>
-      ) : (
-        <Paper withBorder shadow="md" p="lg" radius="md">
-          <List spacing="md" size="md">
-            {leaderboard.map((person, index) => (
-              <List.Item
-                key={person.name}
-                icon={
-                  <ThemeIcon color="blue" size={32} radius="xl">
-                    {index + 1}
-                  </ThemeIcon>
-                }
-              >
-                <Text>
-                  <strong>{person.name}</strong> — <Text span c="dimmed">{person.score} pts</Text>
-                </Text>
-              </List.Item>
-            ))}
-          </List>
-        </Paper>
-      )}
-    </Container>
+        {loading ? (
+          <Center>
+            <Loader color="violet" />
+          </Center>
+        ) : (
+          <Paper
+            withBorder
+            shadow="md"
+            p="lg"
+            radius="md"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(5px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+            }}
+          >
+            <List spacing="md" size="md">
+              {leaderboard.map((person, index) => (
+                <List.Item
+                  key={person.name}
+                  icon={
+                    <ThemeIcon color="purple" size={32} radius="xl">
+                      {index + 1}
+                    </ThemeIcon>
+                  }
+                >
+                  <Text>
+                    <strong style={{ color: '#f2e6ff' }}>{person.name}</strong> —{' '}
+                    <Text span c="dimmed">
+                      {person.score} pts
+                    </Text>
+                  </Text>
+                </List.Item>
+              ))}
+            </List>
+          </Paper>
+        )}
+      </Container>
     </div>
   );
 }
