@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { useAuthStore } from "./store/useAuthStore";
 
 export function Header() {
-  const { authUser, signout } = useAuthStore();
   const [opened, { toggle }] = useDisclosure(false);
   
   return (

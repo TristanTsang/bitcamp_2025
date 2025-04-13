@@ -1,38 +1,4 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import multer from 'multer';
-import cors from 'cors'; 
-
-dotenv.config();
-
-const app = express();
-const port = 3000;
-
-
-app.use(cors({
-  origin: 'http://localhost:5173',
-}));
-
-// Set up multer for file upload
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
-// Initialize the Gemini API client
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-app.post('/api/review-resume', upload.single('resume'), async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'Please upload a resume PDF file.' });
-    }
-
-    if (req.file.mimetype !== 'application/pdf') {
-      return res.status(400).json({ error: 'Only PDF files are allowed.' });
-    }
-
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
-    const prompt = `Here is a sample of top candidate resumes:
+export const GEMINI_PROMPT = `Here is a sample of top candidate resumes:
 
 
 Resume 1: EDUCATION
@@ -529,35 +495,21 @@ Compare the user's resume with the top resumes above and give feedback that is v
 - I also want an overall average score of the 3 subscores.
 - Be generally concise and explain well when needed
 - Every single time that you mention or compare the inputted resume to the 11 top resumes, always refer them as "the top resumes in our database" or something along those lines.
+
+
+Now compare the uploaded resume to the top resumes. I want you to return the response in strict JSON format like this (no explanation, no markdown). Dont include anything before or after the curly brackets either. Dont include the :
+
+
+{
+    score: ,
+    strengths: ,
+    weaknesses: ,
+    suggestedActivities: ,
+    experienceScore: ,
+    skillsScore: ,
+    educationScore: ,
+    comparisonText: ,
+}
+
+
 `;
-
-
-
-    const imagePart = {
-      inlineData: {
-        data: req.file.buffer.toString('base64'),
-        mimeType: 'application/pdf',
-      },
-    };
-
-    const result = await model.generateContent([prompt, imagePart]);
-    const response = await result.response;
-    const text = response?.text ? response.text() : "No feedback received";
-
-    console.log('Generated feedback:', text);
-
-    if (!text) {
-      return res.status(500).json({ error: 'No feedback received from the API' });
-    }
-
-    res.json({ feedback: text });
-
-  } catch (error) {
-    console.error("Gemini API error:", error?.response?.data || error.message || error);
-    res.status(500).json({ error: 'Something went wrong while reviewing the resume.' });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});

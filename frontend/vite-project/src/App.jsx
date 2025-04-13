@@ -60,10 +60,6 @@ const dreamyTheme = createTheme({
 });
 
 function App() {
-  const { checkAuth, authUser } = useAuthStore();
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
   return (
     <MantineProvider 
       theme={dreamyTheme}
@@ -96,7 +92,7 @@ function App() {
         </Router>
       </div>
     </MantineProvider>
-  );
+  )
 }
 
-export default App;
+export default App

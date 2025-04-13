@@ -10,7 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import classes from "./UploadResume.module.css";
-import { useResumeStore } from "../store/useResumeStore";
+
 function UploadResume() {
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
