@@ -13,7 +13,6 @@ export const uploadResume = async (req, res) => {
     if (resumeFile) {
       const uploadResponse = await cloudinary.uploader.upload(resumeFile);
       resumeUrl = uploadResponse.secure_url;
-      console.log(resumeUrl);
     }
 
     if (!resumeUrl) {

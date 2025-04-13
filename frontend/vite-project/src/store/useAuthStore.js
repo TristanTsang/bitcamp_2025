@@ -1,31 +1,34 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import { auth } from "../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import toast from "react-hot-toast";
+import { firebaseErrorMessage } from "../lib/firebaseErrorMessage";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
 
   checkAuth: async () => {
-    try {
-      const token = await auth.currentUser.getIdToken();
-      const res = await axiosInstance.get("/auth/check", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      set({ authUser: res.data });
-    } catch (error) {
-      console.log("Error in checkAuth: ", error);
-      toast.error("Failed to authenticate user");
-      set({ authUser: null });
-    } finally {
-      set({ isCheckingAuth: false });
-    }
+    onAuthStateChanged(auth, async (user) => {
+      try {
+        const token = await user.getIdToken();
+        const res = await axiosInstance.get("/auth/check", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        set({ authUser: res.data });
+      } catch (error) {
+        console.log("Error in checkAuth: ", error);
+        set({ authUser: null });
+      } finally {
+        set({ isCheckingAuth: false });
+      }
+    });
   },
 
   signin: async (email, password) => {
@@ -44,8 +47,20 @@ export const useAuthStore = create((set, get) => ({
       get().checkAuth();
       toast.success("Successful signup");
     } catch (error) {
-      toast.error("Signup Failed");
+      const message = firebaseErrorMessage(error.code);
+      toast.error(message);
       console.log("Error in signup: ", error.message);
+    }
+  },
+  signout: async () => {
+    try {
+      auth.signOut();
+      set({ authUser: null });
+    } catch (error) {
+      console.log("Error in checkAuth: ", error);
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isCheckingAuth: false });
     }
   },
 }));

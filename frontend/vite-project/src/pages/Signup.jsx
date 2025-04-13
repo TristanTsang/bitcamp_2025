@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import classes from "./Login.module.css";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Signup() {
   const [email, setEmail] = useState(null);
@@ -40,6 +41,10 @@ function Signup() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            if (password.trim().length < 6) {
+              toast.error("Password must be at least 6 characters long");
+              return;
+            }
             handleSubmit(email, password);
           }}
         >
