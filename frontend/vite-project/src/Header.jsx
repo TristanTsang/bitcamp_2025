@@ -1,14 +1,13 @@
 // Header.jsx
-import { useState } from 'react';
-import { Burger, Container, Group, Button } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import classes from './Header.module.css';
-import { Link } from 'react-router-dom';
+import { Burger, Container, Group, Button } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import classes from "./Header.module.css";
+import { Link } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 
 export function Header() {
   const [opened, { toggle }] = useDisclosure(false);
-  
+  const { authUser, signout } = useAuthStore();
   return (
     <header className={classes.header}>
       <Container fluid size="md" className={classes.inner}>
@@ -16,14 +15,14 @@ export function Header() {
           component={Link}
           to="/"
           variant="gradient"
-          gradient={{ from: '#1a0033', to: '#4a1577', deg: 135 }}
+          gradient={{ from: "#1a0033", to: "#4a1577", deg: 135 }}
           size="md"
-          style={{ fontSize: 20, fontWeight: 'bold' }}
+          style={{ fontSize: 20, fontWeight: "bold" }}
           className={classes.title}
         >
           Resume Reviewer
         </Button>
-        
+
         {!authUser && (
           <div>
             <Group gap={5} visibleFrom="xs" className={classes.debugGroup}>
@@ -67,13 +66,13 @@ export function Header() {
             </Group>
           </div>
         )}
-        
-        <Burger 
-          opened={opened} 
-          onClick={toggle} 
-          hiddenFrom="xs" 
+
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          hiddenFrom="xs"
           size="sm"
-          color="#e6ccff" 
+          color="#e6ccff"
         />
       </Container>
     </header>

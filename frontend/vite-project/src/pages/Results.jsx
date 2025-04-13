@@ -4,7 +4,7 @@ import { useResumeStore } from "../store/useResumeStore";
 
 function Results() {
   const { userResumes } = useResumeStore();
-  console.log(userResumes[0].analysis);
+  console.log(userResumes);
 
   // Get the resultData and file from the location state
   const resultData = userResumes[0].analysis;

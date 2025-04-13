@@ -1,24 +1,45 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Container,
   FileInput,
   Title,
   Button,
   Text,
+  Loader,
   Paper,
 } from "@mantine/core";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import { useResumeStore } from "../store/useResumeStore";
 import classes from "./UploadResume.module.css";
 
 function UploadResume() {
+  const { uploadResume } = useResumeStore();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!file) return;
-    // Pass the file state to the results page via navigation state
-    navigate('/results', { state: { file } });
+    setLoading(true);
+    setError(null);
+    try {
+      const readerResult = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+      });
+
+      await uploadResume(readerResult);
+
+      navigate("/results");
+    } catch (error) {
+      console.log(error.data.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -28,10 +49,10 @@ function UploadResume() {
       py="xl"
       my={40}
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '80vh'
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "80vh",
       }}
     >
       <Paper
@@ -40,11 +61,11 @@ function UploadResume() {
         p="xl"
         radius="md"
         style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(5px)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          width: '100%',
-          maxWidth: '500px'
+          background: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(5px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          width: "100%",
+          maxWidth: "500px",
         }}
       >
         <Title
@@ -52,8 +73,8 @@ function UploadResume() {
           mb="md"
           align="center"
           style={{
-            color: '#f2e6ff',
-            textShadow: '0 0 10px rgba(153, 51, 255, 0.5)'
+            color: "#f2e6ff",
+            textShadow: "0 0 10px rgba(153, 51, 255, 0.5)",
           }}
         >
           Upload Your Resume
@@ -69,26 +90,31 @@ function UploadResume() {
           classNames={{ label: classes.label }}
           styles={{
             input: {
-              textAlign: 'center', // Center the placeholder text
-              color: '#e6ccff',
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-              borderColor: 'rgba(153, 51, 255, 0.5)',
+              textAlign: "center", // Center the placeholder text
+              color: "#e6ccff",
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              borderColor: "rgba(153, 51, 255, 0.5)",
             },
           }}
         />
+        {error && (
+          <Text color="red" mt="sm" align="center">
+            {error}
+          </Text>
+        )}
         <Button
           fullWidth
           mt="md"
           onClick={handleUpload}
-          disabled={!file}
+          disabled={!file || loading}
           style={{
-            background: 'linear-gradient(135deg, #9933ff, #6600cc)',
-            border: 'none',
-            boxShadow: '0 0 10px rgba(153, 51, 255, 0.5)',
-            transition: 'all 0.3s ease',
+            background: "linear-gradient(135deg, #9933ff, #6600cc)",
+            border: "none",
+            boxShadow: "0 0 10px rgba(153, 51, 255, 0.5)",
+            transition: "all 0.3s ease",
           }}
         >
-          Submit
+          {loading ? <Loader size="sm" color="white" /> : "Submit"}
         </Button>
       </Paper>
     </Container>
