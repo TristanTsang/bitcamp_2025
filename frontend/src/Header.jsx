@@ -63,6 +63,7 @@ export function Header() {
 
               <Button
                 component={Link}
+                to="/"
                 onClick={() => {
                   signout();
                 }}
