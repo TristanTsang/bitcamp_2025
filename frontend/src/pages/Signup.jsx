@@ -98,7 +98,7 @@ function Signup() {
                     classNames={{ label: classes.label, input: classes.input }}
                   />
                   <PasswordInput
-                    size="md"
+                    size="lg"
                     label="Password"
                     placeholder="Your password"
                     required

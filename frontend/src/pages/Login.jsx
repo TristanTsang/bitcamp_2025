@@ -93,7 +93,7 @@ function Login() {
               <div className={classes.formColumn}>
                 <form onSubmit={handleSubmit}>
                   <TextInput
-                    size="md"
+                    size="lg"
                     label="Email"
                     placeholder="applicant@gmail.com"
                     required

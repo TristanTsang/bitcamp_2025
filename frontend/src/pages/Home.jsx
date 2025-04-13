@@ -7,6 +7,8 @@ function Home() {
       <h1 style={{ paddingBottom: "2rem", paddingTop: "2em", color: "white" }}>
         CosmicCV
       </h1>
+      <h4>An 'Out of this World' Resume Reviewer</h4>
+      <h4 style={{ paddingBottom: "2rem"}}>Gaze upon your career path that is written in the stars</h4>
       <div className="card">
         <p style={{ marginLeft: "2em", marginRight: "2em" }}>
           CosmicCV helps you recognize places in your resume you can strengthen
@@ -24,7 +26,7 @@ function Home() {
           flexDirection: "column",
           rowGap: "1rem",
           alignItems: "center",
-          paddingTop: "3rem",
+          paddingTop: "2rem",
         }}
       >
         <Button
