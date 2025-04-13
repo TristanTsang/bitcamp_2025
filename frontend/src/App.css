@@ -1,0 +1,107 @@
+/* App.css */
+#root {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+.dreamy-container {
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2a0a4a 0%, #4a1577 50%, #2a0a4a 100%);
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  padding: 0rem;
+}
+
+.card {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 1em 8em;
+}
+
+/* Styles for the starry background */
+.starry-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle infinite;
+}
+
+@keyframes twinkle {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+/* Custom input styles */
+input, textarea, select {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(153, 51, 255, 0.5) !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 8px rgba(153, 51, 255, 0.8) !important;
+  border-color: rgba(153, 51, 255, 0.8) !important;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: #f2e6ff !important;
+  font-weight: 400 !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 1rem !important;
+}
+
+h1 {
+  font-size: 2.5rem !important;
+  text-shadow: 0 0 10px rgba(153, 51, 255, 0.5) !important;
+}
+
+p {
+  color: #e6ccff !important;
+  line-height: 1.6 !important;
+}
+
+
+button {
+  background: linear-gradient(135deg, #9933ff, #6600cc) !important;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(153, 51, 255, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+
+button:hover {
+  box-shadow: 0 0 20px rgba(153, 51, 255, 0.8) !important;
+  transform: translateY(-2px) !important;
+}
