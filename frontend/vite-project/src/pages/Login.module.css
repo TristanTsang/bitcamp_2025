@@ -393,18 +393,30 @@
   overflow: hidden;
 }
 
-/* Orbital ring animation */
+
+.circleWrapper {
+  position: relative;
+  width: 200px;   /* Adjust size as needed; ensure it is big enough to contain your rings */
+  height: 200px;
+  margin-bottom: 20px; /* Optional spacing */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure orbital rings are absolutely centered in the wrapper */
 .orbitalRing {
   position: absolute;
-  width: 180px;
-  height: 180px;
-  border: 1px solid rgba(153, 51, 255, 0.3);
-  border-radius: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 180px;  /* Example size; adjust as needed */
+  height: 180px;
+  border: 1px solid rgba(153, 51, 255, 0.3);
+  border-radius: 50%;
   animation: rotate 20s linear infinite;
 }
+
 
 .orbitalRing::before {
   content: '';
@@ -431,15 +443,19 @@
   box-shadow: 0 0 10px #cc99ff, 0 0 20px #cc99ff;
 }
 
+/* Ensure the decorative circle is also absolutely centered */
 .decorativeCircle {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(153, 51, 255, 0.5) 0%, rgba(25, 10, 41, 0) 70%);
-  margin-bottom: 20px;
-  position: relative;
+  background: radial-gradient(circle, rgba(153, 51, 255, 0.3) 0%, rgba(25, 10, 41, 0) 70%);
   animation: pulseGlow 8s infinite alternate;
 }
+
 
 /* Planet-like texture for circle */
 .decorativeCircle::before {
