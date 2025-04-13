@@ -95,7 +95,7 @@ function Signup() {
                     placeholder="example@email.com"
                     required
                     onChange={(e) => setEmail(e.target.value)}
-                    classNames={{ label: classes.label, input: classes.input }}
+                    classNames={{ label: classes.label }}
                   />
                   <PasswordInput
                     size="lg"

@@ -99,7 +99,7 @@ function Login() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    classNames={{ label: classes.label, input: classes.input }}
+                    classNames={{ label: classes.label }}
                     disabled={loading}
                   />
                   <PasswordInput
