@@ -167,7 +167,8 @@ function UploadResume() {
       <Container size="sm" className={classes.container}>
         <Title className={classes.title} order={1}>Upload Your Resume</Title>
         <div className={classes.centerWrapper}>
-          <Paper className={classes.uploadBox} ref={uploadBoxRef}>
+          <Paper className={classes.uploadBox} ref={uploadBoxRef} 
+          style={{marginTop:"5rem", border: isAnimating ? "none" : undefined}}>
             <Text className={classes.label}>Upload your resume to get started</Text>
             <FileInput
               value={file}

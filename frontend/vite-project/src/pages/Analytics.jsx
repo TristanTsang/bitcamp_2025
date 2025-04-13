@@ -9,6 +9,7 @@ import {
     Box,
     Stack,
   } from '@mantine/core';
+  import './Results.css';
   
   function Analytics({
     score,
@@ -21,8 +22,8 @@ import {
     comparisonText,
   }) {
     return (
-      <Card shadow="md" padding="lg" radius="md" withBorder style={{ height: '100%' }}>
-        <Title order={2} align="center" mb="md">
+      <Card shadow="md" padding="lg" radius="md" withBorder style={{ height: '100%'}}>
+        <Title order={2} align="center" mb="md" c="white">
           Resume Analysis Summary
         </Title>
   
@@ -62,10 +63,10 @@ import {
           </Box>
   
           {/* Right: Subscores + Comparison */}
-          <Box style={{ flex: 1, paddingLeft: '2rem' }}>
+          <Box style={{ flex: 1, paddingLeft: '2rem', color: "white" }}>
             <Stack gap="md">
               <div>
-                <Text weight={600} mb={4}>Experience</Text>
+                <Text weight={600} mb={4} c= "white">Experience</Text>
                 <Progress value={experienceScore} color="blue" />
                 <Text size="sm" c="dimmed">{experienceScore}/100</Text>
               </div>
@@ -85,8 +86,8 @@ import {
               <Divider />
   
               <div>
-                <Text weight={600}>Comparison</Text>
-                <Text size="sm" c="dimmed" mt={4}>
+                <Text weight={600} c= "white">Comparison</Text>
+                <Text size="sm" c={["dimmed", "white"]} mt={4}>
                   {comparisonText}
                 </Text>
               </div>

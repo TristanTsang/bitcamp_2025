@@ -1,6 +1,7 @@
 import { Container, Title, Paper, Text, Grid, Button } from "@mantine/core";
 import Analytics from "./Analytics"; // Assuming Analytics already displays the score and comparison
 import { useResumeStore } from "../store/useResumeStore";
+import './Results.css';
 
 function Results() {
   const { userResumes, selectedResume } = useResumeStore();
@@ -19,8 +20,10 @@ function Results() {
   };
 
   return (
-    <Container size="lg" my={40}>
-      <Paper withBorder shadow="md" p="xl">
+    <Container size="lg" my={40} 
+    style={{paddingTop: "4em"}}>
+      <Paper withBorder shadow="md" p="xl"
+      style={{boxShadow: "10", backgroundColor: 'rgba(168, 61, 255, 0.5)'}}>
         <Grid gutter="lg">
           {/* Left Column: Analysis Section */}
           <Grid.Col span={12} md={6}>
@@ -38,11 +41,10 @@ function Results() {
 
           {/* Right Column: Resume Preview */}
           <Grid.Col span={12} md={6}>
-            <Paper withBorder shadow="sm" p="lg">
+            <Paper withBorder shadow="sm" p="lg" style= {{backgroundColor:"rgba(25, 10, 41, 0.7)"}}>
               <Title order={3}>Resume</Title>
               {
                 <>
-                  <Text mt="md">Resume uploaded:</Text>
                   <Button mt="md" onClick={handleDownload}>
                     Download Resume
                   </Button>
