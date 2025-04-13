@@ -2,59 +2,76 @@
 import {
   Anchor,
   Button,
+  Checkbox,
   Container,
+  Group,
   Paper,
   PasswordInput,
   Text,
   TextInput,
   Title,
-} from '@mantine/core';
-import classes from './Login.module.css';
+} from "@mantine/core";
+import { useState } from "react";
+import { useAuthStore } from "../store/useAuthStore";
+import classes from "./Login.module.css";
 import { Link } from 'react-router-dom';
 
 function Login() {
+  const [email, setEmail] = useState(null);
+
+  const [password, setPassword] = useState(null);
+  const { signin } = useAuthStore();
+  const handleSubmit = (email, password) => {
+    if (email && password) signin(email, password);
+  };
   return (
     <div className={classes.wrapper}>
       <Container size="xl" className={classes.container}>
         <div className={classes.starsAccent}></div>
         <div className={classes.starsAccent2}></div>
         
-        <Title ta="center" className={classes.title}>
-          Welcome Back
-        </Title>
-        
-        <Text c="dimmed" size="md" ta="center" mt={5} className={classes.subtitle}>
-          Don't have an account yet?{' '}
-          <Anchor size="md" component={Link} to="/signup" className={classes.anchor}>
-            Create account
-          </Anchor>
-        </Text>
-        
-        <Paper withBorder shadow="md" p={35} mt={30} radius="lg" className={classes.paper}>
+      <Title ta="center" className={classes.title}>
+        Welcome back!
+      </Title>
+      <Text c="dimmed" size="md" ta="center" mt={5}>
+        Don't have an account yet?{" "}
+        <Anchor size="md" component={Link} to="/signup" className={classes.anchor}>
+          Create account
+        </Anchor>
+      </Text>
+
+      <Paper size="lg" withBorder shadow="md" p={35} mt={30} radius="lg" className={classes.paper}>
           <div className={classes.formGrid}>
             <div className={classes.formColumn}>
-              <TextInput
-                size="md"
-                label="Email"
-                placeholder="applicant@gmail.com"
-                required
-                classNames={{ label: classes.label, input: classes.input }}
-              />
-              
-              <PasswordInput
-                size="md"
-                label="Password"
-                placeholder="Your password"
-                required
-                mt="md"
-                classNames={{ label: classes.label, input: classes.input }}
-              />
-              
-              <Button size="md" fullWidth mt="xl" className={classes.button}>
-                Sign in
-              </Button>
-              
-              <Anchor 
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit(email, password);
+              }}
+            >
+          <TextInput
+            size="md"
+            label="Email"
+            placeholder="applicant@gmail.com"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            classNames={{ label: classes.label , input: classes.input }}
+          />
+          <PasswordInput
+            size="lg"
+            label="Password"
+            placeholder="Your password"
+            required
+            mt="md"
+            onChange={(e) => setPassword(e.target.value)}
+            classNames={{ label: classes.label, input: classes.input }}
+          />
+          <Button type="submit" size="lg" fullWidth mt="xl">
+            Sign in
+          </Button>
+        </form>
+
+        <Anchor 
                 size="sm" 
                 ta="center" 
                 display="block" 
@@ -73,8 +90,8 @@ function Login() {
               <div className={classes.decorativeStar3}></div>
             </div>
           </div>
-        </Paper>
-      </Container>
+      </Paper>
+    </Container>
     </div>
   );
 }

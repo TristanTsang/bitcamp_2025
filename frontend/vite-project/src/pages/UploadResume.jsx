@@ -1,8 +1,16 @@
 import { useState } from 'react';
-import { Container, FileInput, Title, Button, Paper } from '@mantine/core';
+import {
+  Container,
+  FileInput,
+  Title,
+  Button,
+  Text,
+  Paper,
+} from "@mantine/core";
 import { useNavigate } from 'react-router-dom';
-import classes from "./UploadResume.module.css";
 
+import classes from "./UploadResume.module.css";
+import { useResumeStore } from "../store/useResumeStore";
 function UploadResume() {
   const [file, setFile] = useState(null);
   const navigate = useNavigate();

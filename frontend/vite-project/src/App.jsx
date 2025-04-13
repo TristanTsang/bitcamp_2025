@@ -82,7 +82,7 @@ function App() {
         </Router>
       </div>
     </MantineProvider>
-  )
+  );
 }
 
-export default App
+export default App;
