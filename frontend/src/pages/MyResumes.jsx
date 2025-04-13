@@ -140,7 +140,7 @@ function MyResumePage() {
           rowGap: "1rem",
           columnGap: "2rem",
           display: "grid",
-          gridTemplateColumns: " repeat(auto-fit, minmax(300px, 1fr))",
+          gridTemplateColumns: " repeat(auto-fit, 300px)",
         }}
       >
         {userResumes.map((resume) => (
