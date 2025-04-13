@@ -9,11 +9,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-[data-mantine-color-scheme="dark"] {
-  background-color: #242424 !important;
-  color: #fff !important;
-}
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -29,6 +24,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
