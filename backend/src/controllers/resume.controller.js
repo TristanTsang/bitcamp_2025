@@ -21,6 +21,7 @@ export const uploadResume = async (req, res) => {
 
     const newResume = new Resume({
       uid: userId,
+      username: req.user.username,
       analysis: {
         Weaknesses: ["Weakness 1, Weakness 2, Weakness 3"],
         Strengths: ["Strength1", "Strength2"],

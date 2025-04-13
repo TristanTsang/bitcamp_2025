@@ -41,14 +41,27 @@ export const useAuthStore = create((set, get) => ({
       toast.error("Login failed");
     }
   },
-  signup: async (email, password) => {
+  signup: async (email, password, username) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      get().checkAuth();
-      toast.success("Successful signup");
+      const user = auth.currentUser;
+      if (!user) throw new Error("No user found after sign up");
+      const token = await user.getIdToken();
+
+      await axiosInstance.put(
+        "/auth/update-username",
+        { username: username },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      await get().checkAuth();
+      toast.success("Account created successfully");
     } catch (error) {
-      const message = firebaseErrorMessage(error.code);
-      toast.error(message);
+      const errorMessage = firebaseErrorMessage(error.code);
+      toast.error(errorMessage);
       console.log("Error in signup: ", error.message);
     }
   },

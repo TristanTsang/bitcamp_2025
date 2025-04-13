@@ -8,8 +8,13 @@ const resumeSchema = new mongoose.Schema(
     },
     resume: {
       type: String,
-      required: "",
+      required: true,
     },
+    username: {
+      type: String,
+      required: true,
+    },
+
     parsedData: {
       type: Object,
       required: true,

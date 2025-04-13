@@ -18,11 +18,11 @@ import toast from "react-hot-toast";
 
 function Signup() {
   const [email, setEmail] = useState(null);
-
+  const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const { signup } = useAuthStore();
-  const handleSubmit = (email, password) => {
-    if (email && password) signup(email, password);
+  const handleSubmit = (email, password, username) => {
+    if (email && password) signup(email, password, username);
   };
 
   return (
@@ -41,17 +41,31 @@ function Signup() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            if (!username.trim()) {
+              toast.error("You must create a username");
+              return;
+            }
             if (password.trim().length < 6) {
               toast.error("Password must be at least 6 characters long");
               return;
             }
-            handleSubmit(email, password);
+
+            handleSubmit(email, password, username);
           }}
         >
           <TextInput
             size="lg"
+            label="Username"
+            placeholder="supercoolusername123"
+            required
+            onChange={(e) => setUsername(e.target.value)}
+            classNames={{ label: classes.label }}
+          />
+          <TextInput
+            mt="md"
+            size="lg"
             label="Email"
-            placeholder="applicant@gmail.com"
+            placeholder="example@email.com"
             required
             onChange={(e) => setEmail(e.target.value)}
             classNames={{ label: classes.label }}
